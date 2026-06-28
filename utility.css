@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.initial-padding {
+    padding-inline: 5vw;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.headtext {
+    font-weight: 700;
+}
+
+.button {
+    padding-inline: 1.25rem;
+    padding-block: 0.45rem;
+    border-radius: 0.5rem;
+    border: none;
+    /* font-weight: 700; */
+    transition: 0.25s;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+
+/* skills shower */
+.blue-shower {
+    color: #0b236d;
+    background-color: #6275dfa2;
+    border-radius: 1.5rem;
+    padding: 4px 12px;
+}
+
+.blond-shower {
+    background-color: #e3d59d;
+    padding: 4px 12px;
+    border-radius: 36px;
+}
+
+.green-shower {
+    color: #097509;
+    background-color: #b1e4b19a;
+    padding: 2px 8px;
+    border-radius: 1.5rem;
+}
