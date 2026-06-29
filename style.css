@@ -6,6 +6,10 @@
   --font-size: 20px;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--pr-color);
   color: var(--text-color);
@@ -15,7 +19,7 @@ body {
   border-bottom: 0.5px solid var(--text-color);
 }
 
-/* Navabar Component Styles */
+/* Navbar Component Styles */
 
 #navbar {
   padding-block: 1.25rem;
@@ -123,7 +127,6 @@ body {
   flex-wrap: wrap;
 }
 
-.class-item {}
 
 .card {
   background-color: var(--tr-color);
@@ -313,7 +316,7 @@ body {
 }
 
 
-/* contact section Styilng */
+/* contact section Styling */
 
 #contact {
   padding-block: 3.25rem;
@@ -365,6 +368,10 @@ body {
   width: 100%;
 }
 
+#name-email-box > input {
+  width: 48%;
+}
+
 #name-email-box>input {
   flex-grow: 1;
 }
@@ -414,3 +421,6 @@ footer > ul {
 footer a , footer a:visited , footer a :active{
 color: var(--text-color);
 }
+
+
+

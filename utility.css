@@ -16,6 +16,10 @@ ul {
     padding-inline: 5vw;
 }
 
+.scroll-section{
+    scroll-margin: 60px;
+}
+
 .center {
     display: flex;
     align-items: center;
@@ -26,7 +30,7 @@ ul {
     justify-content: space-between;
 }
 
-.headtext {
+.head-text {
     font-weight: 700;
 }
 
