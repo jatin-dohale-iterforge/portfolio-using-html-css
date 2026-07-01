@@ -69,7 +69,7 @@ body {
 }
 
 #hero-text {
-  width: 30vw;
+  width: 40vw;
 }
 
 #hero-header {
@@ -84,6 +84,8 @@ body {
 }
 
 #hero-buttons {
+  display: flex;
+  
   margin-block: 1.5rem;
 }
 
@@ -119,12 +121,13 @@ body {
 
 
 #card-holder {
-  justify-content: space-between;
-}
-
-#card-holder {
   padding: 0;
   flex-wrap: wrap;
+}
+
+#card-holder > .card-item{
+    width: 28vw;
+    height: 250px;
 }
 
 
@@ -385,6 +388,7 @@ textarea {
   height: 75px;
   padding: 8px;
   outline: none;
+  resize: none;
 }
 
 input {

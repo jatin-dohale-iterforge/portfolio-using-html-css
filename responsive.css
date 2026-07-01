@@ -1,0 +1,39 @@
+/* Tablet */
+@media (min-width:756px) and (max-width:992px) {
+    #navbar{
+        height: 10vh;
+    }
+    #hero {
+        height: 90vh;
+    }
+
+    /* hero section */
+    #hero-project,
+    #hero-download {
+        margin-bottom: 0.5rem;
+        width: 150px;
+    }
+
+    #hero-buttons {
+        margin: 1rem 0 0 0;
+    }
+
+    #hero-text {
+        width: 50vw;
+    }
+
+    #hero-buttons a {
+        font-size: 16px;
+    }
+
+    /* project section */
+
+
+
+    /* skill Section */
+    #tools-box h4 {
+        white-space: nowrap;
+    }
+
+
+}
