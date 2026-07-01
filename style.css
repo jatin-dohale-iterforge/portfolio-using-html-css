@@ -1,0 +1,426 @@
+:root {
+  --pr-color: #ecf9ff;
+  --sc-color: #1b2976;
+  --tr-color: #efece2;
+  --text-color: #2c3947c9;
+  --font-size: 20px;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--pr-color);
+  color: var(--text-color);
+}
+
+.bottom-border {
+  border-bottom: 0.5px solid var(--text-color);
+}
+
+/* Navbar Component Styles */
+
+#navbar {
+  padding-block: 1.25rem;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: var(--pr-color);
+}
+
+#navbar-header {
+  color: var(--sc-color);
+}
+
+#navlink-container {
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  color: var(--sc-color);
+}
+
+#item-home>a {
+  color: var(--sc-color);
+  font-weight: 600;
+}
+
+.navbar-link {
+  color: var(--text-color);
+}
+
+#navbar-button,
+#hero-project {
+  background-color: var(--sc-color);
+  color: var(--pr-color);
+}
+
+/* Hero Section Styling */
+#hero {
+  height: 80vh;
+  justify-content: space-between;
+}
+
+#hero-cap {
+  width: fit-content;
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.5rem;
+  font-size: calc(var(--font-size) - 0.35rem);
+}
+
+#hero-text {
+  width: 30vw;
+}
+
+#hero-header {
+  line-height: 3rem;
+  font-size: 2.5rem;
+}
+
+#hero-desc {
+  line-height: 1.6rem;
+  font-size: var(--font-size);
+  margin-block: 0.75rem;
+}
+
+#hero-buttons {
+  margin-block: 1.5rem;
+}
+
+#hero-project {
+  margin-right: 15px;
+}
+
+#hero-project>a {
+  color: var(--pr-color);
+  background-color: var(--sc-color);
+  font-size: calc(var(--font-size) - 0.25rem);
+}
+
+#hero-download {
+  border: 2px solid var(--sc-color);
+}
+
+#hero-download>a {
+  color: var(--sc-color);
+  font-size: calc(var(--font-size) - 0.25rem);
+}
+
+#hero-image img {
+  border-radius: 300px;
+  width: 175px;
+  height: 175px;
+}
+
+/* Project-showcase Section styling */
+#project {
+  padding-block: 3.25rem;
+}
+
+
+#card-holder {
+  justify-content: space-between;
+}
+
+#card-holder {
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+
+.card {
+  background-color: var(--tr-color);
+  min-width: 25vw;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 21px 25px 49px -17px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 21px 25px 49px -17px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 21px 25px 49px -17px rgba(0, 0, 0, 0.45);
+}
+
+
+.card-icon {
+  border-radius: 0;
+  padding-block: 1.5rem;
+  background-color: #79a0f5aa;
+}
+
+.card-desc {
+  margin-block: 0.45rem;
+}
+
+.card-text {
+  width: 80%;
+  padding: 12px;
+}
+
+.tech-container {
+  justify-content: start;
+  margin-block: 1rem;
+  gap: 1rem;
+}
+
+
+
+/* skill section styling */
+#skills {
+  padding-block: 3.25rem;
+  background-color: var(--tr-color);
+}
+
+#skills-heading {
+  justify-content: start;
+  gap: 12px;
+}
+
+#skills-heading>span {
+  font-size: calc(var(--font-size) - 0.25rem);
+}
+
+#skill-section-container {
+  justify-content: space-between;
+  gap: 12px;
+}
+
+#skill-prof,
+#skill-tool {
+  width: 48%;
+}
+
+#prof-head,
+#tool-head {
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.skill-item {
+  margin: 1.25rem 0;
+}
+
+.skill-per {
+  justify-content: space-between;
+  margin: 0.25rem 0;
+}
+
+.skill-per-box>img {
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+}
+
+.section-desc {
+  font-size: calc(var(--font-size) - 0.25rem);
+  margin: 0.15rem 0 1.6rem 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background-color: #f8e5ac;
+  border-radius: 12px;
+}
+
+.progress-bar-filler {
+  height: 12px;
+  background-color: var(--sc-color);
+  border-radius: 12px;
+}
+
+#progress-bar-html {
+  width: 90%;
+}
+
+#progress-bar-css {
+  width: 85%;
+}
+
+#progress-bar-js {
+  width: 75%;
+}
+
+#progress-bar-react {
+  width: 55%;
+}
+
+#progress-bar-node {
+  width: 55%;
+}
+
+#progress-bar-git {
+  width: 70%;
+}
+
+
+#skill-tool {
+  align-self: flex-start;
+}
+
+#tool-container {
+  margin: 1rem 0 1.75rem 0;
+}
+
+#tools-box {
+  gap: 10px;
+}
+
+
+.tool-item {
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: var(--pr-color);
+  padding: 1rem 1rem;
+  border-radius: 12px;
+}
+
+.tool-image-box {
+
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-bottom: 4px;
+
+}
+
+#tool-vscode>.tool-image-box {
+  background-color: #1b2976;
+  ;
+}
+
+#tool-github>.tool-image-box {
+  background-color: #f4e5b8;
+}
+
+#tool-chrome>.tool-image-box {
+  background-color: #c6ebfb;
+  ;
+}
+
+#tool-cli>.tool-image-box {
+  background-color: cornflowerblue;
+}
+
+.tool-image-box>img {
+  width: 24px;
+  height: 24px;
+}
+
+
+#other-skills-container>ul {
+  margin-top: 0.5rem;
+  justify-content: start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+#other-skills-container>ul>li {
+  font-size: calc(var(--font-size) - 5px);
+}
+
+
+/* contact section Styling */
+
+#contact {
+  padding-block: 3.25rem;
+}
+
+#contact-ids {
+  align-self: self-start;
+  width: 48%;
+}
+
+.contact-item>a,
+.contact-item>a:hover,
+.contact-item>a:active {
+  color: var(--text-color);
+}
+
+.contact-item>a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--font-size);
+  margin-bottom: 1rem;
+}
+
+.id-image-box {
+  height: 20px;
+  width: 20px;
+}
+
+.id-image-box>img {
+  width: 20px;
+  height: 20px;
+}
+
+#contact-form {
+  width: 48%;
+}
+
+#contact-form>form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#name-email-box {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+#name-email-box > input {
+  width: 48%;
+}
+
+#name-email-box>input {
+  flex-grow: 1;
+}
+
+#subject {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  height: 75px;
+  padding: 8px;
+  outline: none;
+}
+
+input {
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.25rem;
+  outline: none;
+  border: 1px solid var(--text-color);
+}
+
+#send-button {
+  background-color: var(--pr-color);
+  color: var(--sc-color);
+  border: 2px solid var(--sc-color);
+  width: 100%;
+  padding-block: 0.75rem;
+}
+
+#send-button:hover {
+  background-color: var(--sc-color);
+  color: var(--pr-color);
+  transform: scale(1);
+}
+
+/* footer */
+footer{
+  background-color: var(--tr-color);
+  padding-block:1.5rem ;
+}
+
+footer > ul {
+  gap: 12px;
+}
+
+footer a , footer a:visited , footer a :active{
+color: var(--text-color);
+}
+
+
+
