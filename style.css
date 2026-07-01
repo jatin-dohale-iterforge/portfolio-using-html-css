@@ -127,11 +127,11 @@ body {
 
 #card-holder > .card-item{
     width: 28vw;
-    height: 250px;
-}
-
-
-.card {
+  }
+  
+  
+  .card {
+  height: 250px;
   background-color: var(--tr-color);
   min-width: 25vw;
   border-radius: 1.25rem;
@@ -263,6 +263,7 @@ body {
 }
 
 #tools-box {
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -280,7 +281,12 @@ body {
   padding: 5px 8px;
   border-radius: 5px;
   margin-bottom: 4px;
+  
+}
 
+.tool-image-box>img {
+  width: 24px;
+  height: 24px;
 }
 
 #tool-vscode>.tool-image-box {
@@ -301,10 +307,6 @@ body {
   background-color: cornflowerblue;
 }
 
-.tool-image-box>img {
-  width: 24px;
-  height: 24px;
-}
 
 
 #other-skills-container>ul {

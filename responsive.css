@@ -1,8 +1,9 @@
 /* Tablet */
-@media (min-width:756px) and (max-width:992px) {
-    #navbar{
+@media (min-width:769px) and (max-width:991px) {
+    #navbar {
         height: 10vh;
     }
+
     #hero {
         height: 90vh;
     }
@@ -35,5 +36,138 @@
         white-space: nowrap;
     }
 
+    #tools-box {
+        flex-wrap: nowrap;
+    }
+
+
+}
+
+
+
+/* large Mobile */
+@media screen and (max-width: 768px) {
+
+    /* Navbar */
+    #navbar-list {
+        display: none;
+    }
+
+
+    /* Hero Section */
+    #hero {
+        flex-direction: column-reverse;
+        justify-content: center;
+        height: auto;
+        padding: 1.5rem;
+    }
+
+    #hero-image img {
+        border-radius: 300px;
+        width: 125px;
+        height: 125px;
+    }
+
+    #hero-text {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    #hero-buttons {
+        margin: 1rem 0 0 0;
+    }
+
+
+    #hero-header {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+    }
+
+    #hero-desc {
+        font-size: 16px;
+        margin-block: 0.75rem;
+        line-height: normal;
+    }
+
+    #card-holder {
+        flex-direction: column;
+    }
+
+    /* project section */
+    #card-holder>.card-item {
+        width: 100%;
+        margin-block: 1.25rem;
+    }
+
+    .card {
+        height: auto;
+    }
+
+
+    /* Skill section */
+    #skill-section-container {
+        flex-direction: column;
+    }
+
+    #skill-prof,
+    #skill-tool {
+        width: 100%;
+    }
+
+    #tools-box {
+        flex-wrap: nowrap;
+    }
+
+    #contact-container {
+        flex-direction: column;
+    }
+
+
+    #contact-ids,
+    #contact-form {
+
+        width: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        justify-content: center;
+        padding-block: 1rem;
+        gap: 4px
+    }
+
+    footer>ul {
+        gap: 10px;
+    }
+
+}
+
+
+/* Mobile */
+@media screen and (max-width:480px) {
+
+    /* project section */
+    .tool-item {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .tool-item h4 {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .tool-image-box>img {
+        width: 16px;
+        height: 16px;
+    }
+
+     #tools-box {
+        flex-wrap: wrap;
+    }
 
 }
