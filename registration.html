@@ -11,25 +11,112 @@
 </head>
 
 <body>
+
+    <!-- background Effect -->
+    <div id="background-edit"></div>
+
+    <!--Main Heading -->
+    <div id="heading">
+        <h1>ABC University</h1>
+        <p>Student Registration Form</p>
+    </div>
+
+    <!-- Form -->
     <div id="form-box" class="center">
-        <h1 id="Form Heading">Student Registration Form</h1>
         <form action="">
+            <div>
+                <h2>Personal Information</h2>
+                <p>Please Provide Your Basic Details</p>
+            </div>
 
             <!-- name box -->
+            <h3 id="name-heading" class="label-text">Student Name*</h3>
             <div id="student-name-box">
-                <div class="center">
-                    <label for="first-name" class="">First Name</label>
-                    <input id="first-name" class="deactive-link" type="text" placeholder="Eg.Jatin">
+                <div>
+                    <div class="center">
+                        <label for="first-name" class="">First Name</label>
+                        <input id="first-name" class="deactive-link" type="text" placeholder="Eg.Jatin">
+                    </div>
+                    <p class="error-msg invisible">First Name is Required !!</p>
                 </div>
-                <div class="center">
-                    <label for="middle-name" class="">Middle Name</label>
-                    <input id="middle-name" class="deactive-link" type="text" placeholder="Eg.Ganesh">
+
+                <div>
+                    <div class="center">
+                        <label for="middle-name" class="">Middle Name</label>
+                        <input id="middle-name" class="deactive-link" type="text" placeholder="Eg.Ganesh">
+                    </div>
+                    <p class="error-msg invisible">Middle Name is Required !!</p>
                 </div>
-                <div class="center">
-                    <label for="last-name" class="">Last Name</label>
-                    <input id="last-name" class="deactive-link" type="text" placeholder="Eg.Dohale">
+
+                <div>
+                    <div class="center">
+                        <label for="last-name" class="">Last Name</label>
+                        <input id="last-name" class="deactive-link" type="text" placeholder="Eg.Dohale">
+                    </div>
+                    <p class="error-msg invisible">Last Name is Required !!</p>
                 </div>
             </div>
+
+            <!-- Dob and Gender -->
+            <div id="dob-gender-box">
+                <div>
+                    <div id="dob-box">
+                        <label for="dob" class="label-text">Date of Birth*:</label>
+                        <input id="dob" type="date" placeholder="Pick a Date">
+                    </div>
+                    <p class="error-msg invisible">Date of Birth is Required !!</p>
+                </div>
+                <div>
+                    <div id="gender-box">
+                        <span class="label-text">Gender*:</span>
+                        <div>
+                            <input name="gender" value="male" id="male" type="radio">
+                            <label for="male">Male</label>
+                        </div>
+                        <div>
+                            <input name="gender" value="female" id="female" type="radio">
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+                    <p class="error-msg invisible">Gender is Required !!</p>
+                </div>
+            </div>
+
+
+            <!-- Email and Mobile Number -->
+            <h3 id="contact-heading" class="label-text">Contacts*</h3>
+            <div id="email-number-box">
+                <div>
+                    <div class="center">
+                        <label for="email" class="">Email</label>
+                        <input id="email" type="email" placeholder="Eg. jatindohale@gmail.com" class="deactive-link">
+                    </div>
+                    <p class="error-msg invisible">Email is Required !!</p>
+                </div>
+                <div>
+                    <div class="center">
+                        <label for="mobile" class="">Mobile No.</label>
+                        <input id="mobile" type="number" placeholder="Eg. 908217XXXX" class="deactive-link">
+                    </div>
+                    <p class="error-msg invisible">Number is Required !!</p>
+                </div>
+            </div>
+
+            <!-- About me -->
+             <div id="about-box">
+                <div >
+                    <label for="check-about" class="label-text">About Me</label>
+                    <input type="checkbox" id="check-about">
+                </div>
+                <textarea type="text" name="about" id="about" class="hidden" placeholder="Write Here..."></textarea>
+             </div>
+
+             <!-- Submit Button -->
+              <button type="submit" id="submit">
+                Submit
+              </button>
+
+
 
         </form>
     </div>
