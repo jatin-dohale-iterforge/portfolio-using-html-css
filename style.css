@@ -19,6 +19,11 @@ body {
   border-bottom: 0.5px solid var(--text-color);
 }
 
+.active-bar{
+    background-color:var(--pr-color) ;
+}
+
+
 /* Navbar Component Styles */
 
 #navbar {
@@ -427,6 +432,46 @@ footer > ul {
 footer a , footer a:visited , footer a :active{
 color: var(--text-color);
 }
+
+#bottom-bar{
+  display: none;
+  position: sticky;
+  bottom: 0;
+  padding-block: 1rem;
+  background-color: var(--tr-color);
+  border: 2px solid var(--text-color);
+  border-top-left-radius:20px ;
+  border-top-right-radius: 20px;
+}
+
+#bottom-bar > ul{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#bottom-bar a{
+  flex-direction: column;
+  padding-block: 6px;
+  padding-inline: 12px;
+  border-radius: 15px;
+  width: 10vw;
+}
+
+
+
+#bottom-bar a:active ,
+#bottom-bar a:visited,
+#bottom-bar a:hover{
+  color: var(--text-color);
+}
+
+
+
+
+
+
 
 
 

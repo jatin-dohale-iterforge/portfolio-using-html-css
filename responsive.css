@@ -145,6 +145,10 @@
         gap: 10px;
     }
 
+    #bottom-bar {
+        display: flex;
+    }
+
 }
 
 
@@ -166,8 +170,23 @@
         height: 16px;
     }
 
-     #tools-box {
+    #tools-box {
         flex-wrap: wrap;
+
     }
+
+    #bottom-bar {
+        display: flex;
+        padding-block: 0.5rem;
+    }
+
+    #bottom-bar a {
+        flex-direction: column;
+        padding-block: 3px;
+        padding-inline: 6px;
+        border-radius: 10px;
+      font-size: 10px;
+    }
+  
 
 }
