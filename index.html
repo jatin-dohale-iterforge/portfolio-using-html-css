@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>jatindohale.dev</title>
     <link rel="stylesheet" href="utility.css">
     <link rel="stylesheet" href="style.css">
@@ -20,7 +19,7 @@
         <nav id="navbar-list">
             <ul id="navlink-container" class="center">
                 <li id="item-home">
-                    <a class="navbar-link head-text" href="#hero">Home</a>
+                    <a class="navbar-link active-link" href="#hero">Home</a>
                 </li>
                 <li id="item-project">
                     <a class="navbar-link" href="#project">Projects</a>
@@ -33,9 +32,11 @@
                 </li>
             </ul>
         </nav>
-        <button id="navbar-button" class="button center">
-            Hire Me
-        </button>
+        <a href="/registration.html">
+            <button id="navbar-button" class="button center">
+                Hire Me
+            </button>
+        </a>
     </header>
 
 
@@ -83,12 +84,12 @@
             <p id="project-desc" class="section-desc">Things i will built in Training</p>
 
             <div id="cards-container">
-                <ul id="card-holder" class="center">
+                <ul id="card-holder" class="center space-between">
 
 
                     <!-- profile card -->
                     <li class="card-item">
-                        <div  class="card">
+                        <div class="card">
                             <div class="blue-shower card-icon center">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     aria-hidden="true" role="img" width="36" height="36" viewBox="0 0 24 24"
@@ -291,28 +292,28 @@
                     <div id="tool-container">
                         <ul id="tools-box" class="center">
 
-                            <li class="tool-item  center">
+                            <li id="tool-vscode" class="tool-item  center">
                                 <div class="tool-image-box ">
                                     <img src="assets/tools/code.png" alt="">
                                 </div>
                                 <h4 class="tool-heading">VS Code</h4>
 
                             </li>
-                            <li class="tool-item  center">
+                            <li id="tool-github" class="tool-item  center">
                                 <div class="tool-image-box">
                                     <img src="assets/icons/github.png" alt="">
                                 </div>
                                 <h4 class="tool-heading">Github</h4>
 
                             </li>
-                            <li class="tool-item  center">
+                            <li id="tool-chrome" class="tool-item  center">
                                 <div class="tool-image-box">
                                     <img src="assets/tools/chrome.png" alt="">
                                 </div>
                                 <h4 class="tool-heading">Chrome</h4>
 
                             </li>
-                            <li class="tool-item  center">
+                            <li id="tool-cli" class="tool-item  center">
                                 <div class="tool-image-box center">
                                     <img src="assets/tools/terminal.png" alt="">
                                 </div>
@@ -322,7 +323,7 @@
                         </ul>
 
                     </div>
-                    
+
                     <h3 id="other-skills-head" class="section-desc">Other Skills</h3>
                     <div id="other-skills-container">
                         <ul class="center">
@@ -411,12 +412,40 @@
             <li><a href="https://twitter.com/">Twitter</a></li>
 
         </ul>
-
-
     </footer>
 
 
+    <nav id="bottom-bar">
+        <ul>
+            <li>
+                <a href="#hero" class="center active-bar">
+                    <img src="assets/bottom-bar-icons/home.svg" alt="Home icon">
+                    <p>Home</p>
+                </a>
 
+            </li>
+            <li>
+                <a href="#project" class="center">
+                    <img src="assets/bottom-bar-icons/projects.svg" alt="Project Icon">
+                    <p>Project</p>
+                </a>
+            </li>
+            <li>
+                <a href="#skills" class="center">
+                    <img src="assets/bottom-bar-icons/skills.svg" alt="Skill Icon">
+                    <p>Skill</p>
+                </a>
+            </li>
+            <li>
+                <a href="#contact" class="center">
+                    <img src="assets/bottom-bar-icons/contact.svg" alt="Contact Icon">
+                    <p>Contact</p>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
