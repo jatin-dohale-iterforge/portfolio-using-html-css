@@ -6,7 +6,7 @@
   --font-size: 20px;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -19,8 +19,15 @@ body {
   border-bottom: 0.5px solid var(--text-color);
 }
 
-.active-bar{
-    background-color:var(--pr-color) ;
+.active-bar {
+  background-color: var(--pr-color);
+  transition: all 0.3 ;
+}
+
+.active-link{
+  color: var(--sc-color) !important;
+  font-weight: 700;
+  transition: all 0.3 ease;
 }
 
 
@@ -45,10 +52,6 @@ body {
   color: var(--sc-color);
 }
 
-#item-home>a {
-  color: var(--sc-color);
-  font-weight: 600;
-}
 
 .navbar-link {
   color: var(--text-color);
@@ -90,7 +93,7 @@ body {
 
 #hero-buttons {
   display: flex;
-  
+
   margin-block: 1.5rem;
 }
 
@@ -130,12 +133,12 @@ body {
   flex-wrap: wrap;
 }
 
-#card-holder > .card-item{
-    width: 28vw;
-  }
-  
-  
-  .card {
+#card-holder>.card-item {
+  width: 28vw;
+}
+
+
+.card {
   height: 250px;
   background-color: var(--tr-color);
   min-width: 25vw;
@@ -286,7 +289,7 @@ body {
   padding: 5px 8px;
   border-radius: 5px;
   margin-bottom: 4px;
-  
+
 }
 
 .tool-image-box>img {
@@ -378,7 +381,7 @@ body {
   width: 100%;
 }
 
-#name-email-box > input {
+#name-email-box>input {
   width: 48%;
 }
 
@@ -420,38 +423,40 @@ input {
 }
 
 /* footer */
-footer{
+footer {
   background-color: var(--tr-color);
-  padding-block:1.5rem ;
+  padding-block: 1.5rem;
 }
 
-footer > ul {
+footer>ul {
   gap: 12px;
 }
 
-footer a , footer a:visited , footer a :active{
-color: var(--text-color);
+footer a,
+footer a:visited,
+footer a :active {
+  color: var(--text-color);
 }
 
-#bottom-bar{
+#bottom-bar {
   display: none;
   position: sticky;
   bottom: 0;
   padding-block: 1rem;
   background-color: var(--tr-color);
   border: 2px solid var(--text-color);
-  border-top-left-radius:20px ;
+  border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
 
-#bottom-bar > ul{
+#bottom-bar>ul {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-#bottom-bar a{
+#bottom-bar a {
   flex-direction: column;
   padding-block: 6px;
   padding-inline: 12px;
@@ -461,17 +466,8 @@ color: var(--text-color);
 
 
 
-#bottom-bar a:active ,
+#bottom-bar a:active,
 #bottom-bar a:visited,
-#bottom-bar a:hover{
+#bottom-bar a:hover {
   color: var(--text-color);
 }
-
-
-
-
-
-
-
-
-
