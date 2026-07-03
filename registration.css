@@ -10,6 +10,7 @@
 .label-text {
     font-size: var(--font-size);
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .error-msg {
@@ -18,11 +19,11 @@
     margin: 0.25rem 0 0 0.5rem;
 }
 
-.invisible{
+.invisible {
     visibility: hidden;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
@@ -32,17 +33,26 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    background-image: url("assets/regisrtation/university.jpg");
+    background-image: url("assets/registration/university.jpg");
+   filter: blur(0px);
 }
 
-#background-edit {
+.background-edit {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.8;
+    top: 0;
+    background-image: linear-gradient(120deg, #905de9 0%, #c62feb 100%);
+}
+
+.background-bottom {
     width: 100%;
     height: 100%;
     position: absolute;
     background-image: linear-gradient(120deg, #905de9 0%, #c62feb 100%);
-    ;
     opacity: 0.9;
-    top: 0;
+    bottom: 0;
 }
 
 #heading {
@@ -53,6 +63,7 @@ body {
 
 
 #form-box {
+    width: 100%;
     flex-direction: column;
     z-index: 10;
     margin-top: 1rem;
@@ -69,7 +80,7 @@ form {
 
 
 /* Student Name */
-#name-heading{
+#name-heading {
     margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
@@ -84,7 +95,7 @@ form {
     color: var(--text-color);
 }
 
-#student-name-box>div{
+#student-name-box>div {
     width: 300px;
 }
 
@@ -139,30 +150,30 @@ form {
     width: 100%;
     margin-top: 0.75rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 5%;
-    flex-wrap: wrap
 }
 
-#dob-gender-box > div{
-width: 45%;
+#dob-gender-box>div {
+    width: 45%;
 }
 
-#dob-box {
+#dob-box,
+#gender-box {
     display: flex;
     align-items: center;
     gap: 1rem;
+    height: 40px;
 }
 
 #gender-box {
     width: 45%;
+}
+
+#gender-box>div {
     display: flex;
     align-items: center;
-    gap: 1rem;
-}
-#gender-box > div{
-   display: flex ;
-   align-items: center;
-   gap: 4px;
+    gap: 4px;
 }
 
 /* contact */
@@ -171,31 +182,31 @@ width: 45%;
     margin-bottom: 0.5rem;
 }
 
-#email-number-box>div{
+#email-number-box>div {
     flex-grow: 1;
 }
 
 
 /* About Me */
-#about-box{
+#about-box {
     margin-top: 1rem;
 }
 
 
 
-#about-box > div{
+#about-box>div {
     display: flex;
     align-items: center;
     gap: 4px;
     margin-bottom: 0.25rem;
 }
 
-#about-box input{
+#about-box input {
     width: 0.9rem;
     height: 0.9rem;
 }
 
-#about-box textarea{
+#about-box textarea {
     resize: none;
     margin-bottom: 0.5rem;
     width: 98%;
@@ -203,19 +214,33 @@ width: 45%;
 
 
 /* Submit Button */
-#submit{
+#submit {
     width: 100%;
     background-color: var(--tr-color);
     color: var(--text-color);
     border: 5px solid var(--sc-color);
-    padding-block:8px ;
+    padding-block: 8px;
     font-size: var(--font-size);
     border-radius: var(--br-radius);
     font-weight: 700;
     transition: all 0.2 ease;
 }
 
-#submit:hover{
+#submit:hover {
     background-color: var(--sc-color);
     color: var(--pr-color);
 }
+
+
+/* Media Queries From Here */
+@media (min-width:768px) and (max-width:991px) {
+    .background-bottom {
+        bottom: -30%;
+    }
+
+    #dob-gender-box {
+        flex-direction: column;
+    }
+
+}
+
