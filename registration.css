@@ -245,7 +245,7 @@ form {
 
 #submit:hover{
     background-color:#101c61;
-    color: #dff4fe
+    color: #dff4fe;
 }
 #cancel:hover {
     background-color: var(--sc-color);
