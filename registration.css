@@ -46,14 +46,6 @@ body {
     background-image: linear-gradient(120deg, #905de9 0%, #c62feb 100%);
 }
 
-.background-bottom {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-image: linear-gradient(120deg, #905de9 0%, #c62feb 100%);
-    opacity: 0.9;
-    bottom: 0;
-}
 
 #heading {
     z-index: 10;
@@ -244,3 +236,61 @@ form {
 
 }
 
+
+/* large Mobile */
+@media screen and (max-width: 768px) {
+
+    .background-bottom {
+        display: hidden;
+    }
+
+    #student-name-box,
+    #dob-gender-box,
+    #email-number-box {
+        flex-direction: column;
+    }
+
+
+    #student-name-box>div,
+    #email-number-box>div {
+        width: 100%;
+       
+    }
+}
+
+
+/* Mobile */
+@media screen and (max-width:480px) {
+    body{
+        padding: 0px;
+        padding-block: 2rem;
+    }
+
+    #student-name-box{
+        gap: 0rem;
+    }
+    #student-name-box p,
+    #email-number-box p{
+        margin-bottom: 0.40rem;
+    }
+
+
+    #dob-gender-box > div{
+        width: 100%;
+
+    }
+
+    #dob-box{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    #dob-box > input{
+        width: 100%;
+    }
+
+    #email-number-box{
+        gap: 0rem;
+    }
+}
