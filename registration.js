@@ -1,9 +1,19 @@
 var formOkay = true;
 
+// captalize function
+function capitalize(str) {
+return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+
+
 // function for name validation
 const nameChecker = (input, str) => {
+    const text = (input.name).replace("-"," ");
     const isName = /^[A-Za-z]+$/.test(str)
     if (str.length == 0) {
+        input.parentElement.nextElementSibling.innerText = `${capitalize(text)} is Required`;
+        input.parentElement.nextElementSibling.classList.remove("invisible");
         formOkay = false;
         return
     }
@@ -30,18 +40,24 @@ lastName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
 // Number Checker
 const numberChecker = (numberInput) => {
     if (numberInput.value.length === 0) {
+         numberInput.parentElement.nextElementSibling.innerText = "Mobile Number is Required";
+         numberInput.parentElement.nextElementSibling.classList.remove("invisible");
         formOkay = false;
         return
     }
     if (numberInput.value.length === 10) {
+        numberInput.parentElement.nextElementSibling.classList.add("invisible");
         formOkay = true;
-    }else{
+    } else {
         numberInput.parentElement.nextElementSibling.innerText = "Please Enter Valid Number";
         numberInput.parentElement.nextElementSibling.classList.remove("invisible");
         formOkay = false;
     }
+
 }
 
+const mobile = document.getElementById("mobile")
+mobile.addEventListener("input", (e) => numberChecker(e.target))
 
 // Date Validation Checker
 const dateChecker = () => {
@@ -98,7 +114,7 @@ aboutCheck.addEventListener("click", () => {
 })
 
 
-// function for reseting form
+// function for resetting form
 const formInputs = [...document.querySelectorAll("form input")].slice(0, 4);
 const genderRadios = document.querySelectorAll("#gender-box input")
 const errorTexts = [...document.querySelectorAll("form p")].slice(1);
