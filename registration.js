@@ -1,34 +1,50 @@
 // function for name validation
 const nameChecker = (input, str) => {
     const isName = /^[A-Za-z]+$/.test(str)
-    if(str.length == 0 ) return
+    if (str.length == 0) return
     if (!isName) {
         input.parentElement.nextElementSibling.innerText = "Please Enter Valid Name";
         input.parentElement.nextElementSibling.classList.remove("invisible");
-    }else{
+    } else {
         input.parentElement.nextElementSibling.classList.add("invisible");
     }
 
 }
 
 const firstName = document.getElementById("first-name")
-firstName.addEventListener("input",(e)=>nameChecker(e.target,e.target.value))
+firstName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
 
 const middleName = document.getElementById("middle-name")
-middleName.addEventListener("input",(e)=>nameChecker(e.target,e.target.value))
+middleName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
 
 const lastName = document.getElementById("last-name")
-lastName.addEventListener("input",(e)=>nameChecker(e.target,e.target.value))
+lastName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
 
 
 // Number Checker
-const numberChecker = (numberInput) =>{
-    if(numberInput.value.length == 0 ) return
-     if (!(numberInput.value.length == 10)) {
+const numberChecker = (numberInput) => {
+    if (numberInput.value.length == 0) return
+    if (!(numberInput.value.length == 10)) {
         numberInput.parentElement.nextElementSibling.innerText = "Please Enter Valid Number";
         numberInput.parentElement.nextElementSibling.classList.remove("invisible");
     }
 }
+
+
+// Date Validation Checker
+const dateChecker = () => {
+    const dob = document.getElementById("dob");
+    var today = new Date();
+    var dd = today.getDate() < 10 ? '0' + today.getDate(): today.getDate() ;
+    var mm = (today.getMonth() + 1) < 10 ? '0' + today.getMonth(): today.getMonth();
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+    dob.setAttribute("max", today)
+}
+dateChecker();
+
+
 
 
 
@@ -72,7 +88,7 @@ aboutCheck.addEventListener("click", () => {
 
 // Form Validation
 const form = document.querySelector("form");
-const formInputs = [...document.querySelectorAll("form input")].slice(0,4);
+const formInputs = [...document.querySelectorAll("form input")].slice(0, 4);
 const nameInputs = document.querySelectorAll("#student-name-box input")
 const emailNumberInputs = document.querySelectorAll("#email-number-box input")
 
@@ -86,12 +102,12 @@ form.addEventListener("submit", (e) => {
         }
     })
 
-    emailNumberInputs.forEach((input)=>{
+    emailNumberInputs.forEach((input) => {
         if (input.value === "") {
             input.parentElement.nextElementSibling.classList.remove("invisible");
         }
     })
-    
+
     numberChecker(emailNumberInputs[1]);
 
 })
@@ -120,7 +136,7 @@ cancelButton.addEventListener("click", (e) => {
     genderRadios.forEach((radio) => {
         radio.checked = false
     })
-    errorTexts.forEach((text=>{
+    errorTexts.forEach((text => {
         text.classList.add("invisible");
     }))
 })
