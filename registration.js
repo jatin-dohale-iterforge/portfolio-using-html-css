@@ -1,10 +1,16 @@
+var formOkay = true;
+
 // function for name validation
 const nameChecker = (input, str) => {
     const isName = /^[A-Za-z]+$/.test(str)
-    if (str.length == 0) return
+    if (str.length == 0) {
+        formOkay = false;
+        return
+    }
     if (!isName) {
         input.parentElement.nextElementSibling.innerText = "Please Enter Valid Name";
         input.parentElement.nextElementSibling.classList.remove("invisible");
+        formOkay = false;
     } else {
         input.parentElement.nextElementSibling.classList.add("invisible");
     }
@@ -23,10 +29,16 @@ lastName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
 
 // Number Checker
 const numberChecker = (numberInput) => {
-    if (numberInput.value.length == 0) return
-    if (!(numberInput.value.length == 10)) {
+    if (numberInput.value.length === 0) {
+        formOkay = false;
+        return
+    }
+    if (numberInput.value.length === 10) {
+        formOkay = true;
+    }else{
         numberInput.parentElement.nextElementSibling.innerText = "Please Enter Valid Number";
         numberInput.parentElement.nextElementSibling.classList.remove("invisible");
+        formOkay = false;
     }
 }
 
@@ -35,8 +47,8 @@ const numberChecker = (numberInput) => {
 const dateChecker = () => {
     const dob = document.getElementById("dob");
     var today = new Date();
-    var dd = today.getDate() < 10 ? '0' + today.getDate(): today.getDate() ;
-    var mm = (today.getMonth() + 1) < 10 ? '0' + today.getMonth(): today.getMonth();
+    var dd = today.getDate() < 10 ? '0' + today.getDate() : today.getDate();
+    var mm = (today.getMonth() + 1) < 10 ? '0' + today.getMonth() : today.getMonth();
     var yyyy = today.getFullYear();
 
     today = yyyy + '-' + mm + '-' + dd;
@@ -86,39 +98,11 @@ aboutCheck.addEventListener("click", () => {
 })
 
 
-// Form Validation
-const form = document.querySelector("form");
+// function for reseting form
 const formInputs = [...document.querySelectorAll("form input")].slice(0, 4);
-const nameInputs = document.querySelectorAll("#student-name-box input")
-const emailNumberInputs = document.querySelectorAll("#email-number-box input")
-
-
-form.addEventListener("submit", (e) => {
-    e.preventDefault()
-
-    formInputs.forEach((input) => {
-        if (input.value === "") {
-            input.parentElement.nextElementSibling.classList.remove("invisible");
-        }
-    })
-
-    emailNumberInputs.forEach((input) => {
-        if (input.value === "") {
-            input.parentElement.nextElementSibling.classList.remove("invisible");
-        }
-    })
-
-    numberChecker(emailNumberInputs[1]);
-
-})
-
-
-// Cancel Button
-const cancelButton = document.getElementById("cancel")
 const genderRadios = document.querySelectorAll("#gender-box input")
 const errorTexts = [...document.querySelectorAll("form p")].slice(1);
-cancelButton.addEventListener("click", (e) => {
-    e.preventDefault();
+const resetForm = () => {
     box.forEach((inputBox) => {
         inputBox.classList.remove("active-box")
         inputBox.children[0].classList.remove("active-text")
@@ -130,7 +114,6 @@ cancelButton.addEventListener("click", (e) => {
         inputBox.children[1].className = "deactive-link";
     })
     formInputs.forEach((input) => {
-        console.log(input)
         input.value = ""
     })
     genderRadios.forEach((radio) => {
@@ -139,4 +122,45 @@ cancelButton.addEventListener("click", (e) => {
     errorTexts.forEach((text => {
         text.classList.add("invisible");
     }))
+}
+
+
+// Form Validation
+const form = document.querySelector("form");
+const nameInputs = document.querySelectorAll("#student-name-box input")
+const emailNumberInputs = document.querySelectorAll("#email-number-box input")
+
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+    formInputs.forEach((input) => {
+        if (input.value === "") {
+            input.parentElement.nextElementSibling.classList.remove("invisible");
+            formOkay = false;
+        }
+    })
+
+    emailNumberInputs.forEach((input) => {
+        if (input.value === "") {
+            input.parentElement.nextElementSibling.classList.remove("invisible");
+            formOkay = false;
+        }
+    })
+
+    numberChecker(emailNumberInputs[1]);
+
+    if (formOkay) {
+        alert("Form Submit Successfully")
+        resetForm();
+    }
+
+})
+
+
+// Cancel Button
+const cancelButton = document.getElementById("cancel")
+cancelButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    resetForm();
 })
