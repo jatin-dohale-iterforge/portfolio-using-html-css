@@ -2,14 +2,13 @@ var formOkay = true;
 
 // captalize function
 function capitalize(str) {
-return str.charAt(0).toUpperCase() + str.slice(1);
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
-
 
 
 // function for name validation
 const nameChecker = (input, str) => {
-    const text = (input.name).replace("-"," ");
+    const text = (input.name).replace("-", " ");
     const isName = /^[A-Za-z]+$/.test(str)
     if (str.length == 0) {
         input.parentElement.nextElementSibling.innerText = `${capitalize(text)} is Required`;
@@ -29,19 +28,22 @@ const nameChecker = (input, str) => {
 
 const firstName = document.getElementById("first-name")
 firstName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
+firstName.addEventListener("change",(e)=>e.target.value = capitalize(e.target.value))
 
 const middleName = document.getElementById("middle-name")
 middleName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
+middleName.addEventListener("change",(e)=>e.target.value = capitalize(e.target.value))
 
 const lastName = document.getElementById("last-name")
 lastName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
+lastName.addEventListener("change",(e)=>e.target.value = capitalize(e.target.value))
 
 
 // Number Checker
 const numberChecker = (numberInput) => {
     if (numberInput.value.length === 0) {
-         numberInput.parentElement.nextElementSibling.innerText = "Mobile Number is Required";
-         numberInput.parentElement.nextElementSibling.classList.remove("invisible");
+        numberInput.parentElement.nextElementSibling.innerText = "Mobile Number is Required";
+        numberInput.parentElement.nextElementSibling.classList.remove("invisible");
         formOkay = false;
         return
     }
@@ -88,6 +90,15 @@ box.forEach((inputBox) => {
     })
 })
 
+// Creating Floating Label for Date of Birth
+const dobBox = document.getElementById("dob-box")
+dobBox.addEventListener("click", () => {
+    dobBox.classList.add("active-box")
+    dobBox.children[0].classList = "active-text align-start"
+    dobBox.children[1].className = "active-input";
+    dobBox.children[1].focus();
+})
+
 
 //  Creating floating label for Email and Mobile Number
 const box2 = document.querySelectorAll("#email-number-box > div > div");
@@ -124,6 +135,11 @@ const resetForm = () => {
         inputBox.children[0].classList.remove("active-text")
         inputBox.children[1].className = "deactive-link";
     })
+
+    dobBox.classList.remove("active-box")
+    dobBox.children[0].classList = ""
+    dobBox.children[1].className = "deactive-link";
+
     box2.forEach((inputBox) => {
         inputBox.classList.remove("active-box")
         inputBox.children[0].classList.remove("active-text");
