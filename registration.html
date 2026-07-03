@@ -35,7 +35,7 @@
                 <div>
                     <div class="center">
                         <label for="first-name" class="">First Name</label>
-                        <input id="first-name" class="deactive-link" type="text" placeholder="Eg.Jatin">
+                        <input id="first-name" name="first-name" class="deactive-link" type="text" placeholder="Eg.Jatin">
                     </div>
                     <p class="error-msg invisible">First Name is Required !!</p>
                 </div>
@@ -43,7 +43,7 @@
                 <div>
                     <div class="center">
                         <label for="middle-name" class="">Middle Name</label>
-                        <input id="middle-name" class="deactive-link" type="text" placeholder="Eg.Ganesh">
+                        <input id="middle-name" class="deactive-link" type="text" placeholder="Eg.Ganesh" >
                     </div>
                     <p class="error-msg invisible">Middle Name is Required !!</p>
                 </div>
@@ -70,11 +70,11 @@
                     <div id="gender-box">
                         <span class="label-text">Gender*:</span>
                         <div>
-                            <input name="gender" value="male" id="male" type="radio">
+                            <input name="gender" value="male" id="male" type="radio" required>
                             <label for="male">Male</label>
                         </div>
                         <div>
-                            <input name="gender" value="female" id="female" type="radio">
+                            <input name="gender" value="female" id="female" type="radio" required>
                             <label for="female">Female</label>
                         </div>
                     </div>
@@ -89,14 +89,14 @@
                 <div>
                     <div class="center">
                         <label for="email" class="">Email</label>
-                        <input id="email" type="email" placeholder="Eg. jatindohale@gmail.com" class="deactive-link">
+                        <input id="email" type="email" placeholder="Eg. jatindohale@gmail.com" class="deactive-link" >
                     </div>
                     <p class="error-msg invisible">Email is Required !!</p>
                 </div>
                 <div>
                     <div class="center">
                         <label for="mobile" class="">Mobile No.</label>
-                        <input id="mobile" type="number" placeholder="Eg. 908217XXXX" class="deactive-link">
+                        <input id="mobile" type="number" placeholder="Eg. 908217XXXX" class="deactive-link" >
                     </div>
                     <p class="error-msg invisible">Number is Required !!</p>
                 </div>
@@ -112,9 +112,14 @@
              </div>
 
              <!-- Submit Button -->
-              <button type="submit" id="submit">
-                Submit
-              </button>
+              <div id="submit-cancel-button">
+                  <button type="submit" id="submit">
+                    Submit
+                  </button>
+                  <button type="button" id="cancel">
+                    Cancel
+                  </button>
+              </div>
 
 
 

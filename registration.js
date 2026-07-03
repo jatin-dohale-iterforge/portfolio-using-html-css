@@ -4,14 +4,9 @@ const box = document.querySelectorAll("#student-name-box > div > div");
 
 box.forEach((inputBox) => {
     inputBox.addEventListener("click", () => {
-        box.forEach((item) => {
-            item.classList.remove("active-box")
-            item.children[0].classList.remove("active-text")
-            item.children[1].classList.remove("active-input")
-        })
         inputBox.classList.add("active-box")
         inputBox.children[0].classList.add("active-text")
-        inputBox.children[1].classList.add("active-input")
+        inputBox.children[1].className ="active-input";
         inputBox.children[1].focus()
     })
 })
@@ -22,14 +17,9 @@ const box2 = document.querySelectorAll("#email-number-box > div > div");
 
 box2.forEach((inputBox) => {
     inputBox.addEventListener("click", () => {
-        box2.forEach((item) => {
-            item.classList.remove("active-box")
-            item.children[0].classList.remove("active-text")
-            item.children[1].classList.remove("active-input")
-        })
         inputBox.classList.add("active-box")
         inputBox.children[0].classList.add("active-text")
-        inputBox.children[1].classList.add("active-input")
+        inputBox.children[1].className ="active-input";
         inputBox.children[1].focus()
     })
 })
@@ -45,3 +35,42 @@ aboutCheck.addEventListener("click", () => {
         about.classList.add("hidden");
     }
 })
+
+
+// Form Validation
+const form = document.querySelector("form");
+const formInputs  = document.querySelectorAll("form input");
+form.addEventListener("submit",(e)=>{
+    e.preventDefault()
+    formInputs.forEach((input)=>{
+        if(input.value === ""){
+            input.parentElement.nextElementSibling.classList.remove("invisible");
+            
+        }
+    })
+})
+
+
+// Cancel Button
+const cancelButton = document.getElementById("cancel")
+const genderRadios = document.querySelectorAll("#gender-box input")
+cancelButton.addEventListener("click",(e)=>{
+    e.preventDefault();
+    box.forEach((inputBox) => {
+        inputBox.classList.remove("active-box")
+        inputBox.children[0].classList.remove("active-text")
+        inputBox.children[1].className ="deactive-link";
+    })
+    box2.forEach((inputBox) => {
+        inputBox.classList.remove("active-box")
+        inputBox.children[0].classList.remove("active-text");
+        inputBox.children[1].className ="deactive-link";
+    })
+    formInputs.forEach((input)=>{
+        input.value = ""
+    })
+    genderRadios.forEach((radio)=>{
+        radio.checked = false
+    })
+})
+    

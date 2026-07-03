@@ -34,7 +34,7 @@ body {
     align-items: center;
     padding: 2rem;
     background-image: url("assets/registration/university.jpg");
-   filter: blur(0px);
+    filter: blur(0px);
 }
 
 .background-edit {
@@ -74,7 +74,7 @@ form {
 /* Student Name */
 #name-heading {
     margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 #student-name-box,
@@ -89,6 +89,10 @@ form {
 
 #student-name-box>div {
     width: 300px;
+}
+
+#email-number-box>div {
+    width: 50%;
 }
 
 
@@ -109,6 +113,7 @@ form {
 #student-name-box input,
 #email-number-box input {
     width: 100%;
+    height: 100%;
     background-color: #eaeaff;
 }
 
@@ -131,9 +136,13 @@ form {
 }
 
 .active-text {
-    font-size: 12px;
+    font-size: 16px;
     text-align: right;
     transition: all 0.3s ease;
+    position: absolute;
+    top: -15px;
+    background-color: var(--tr-color);
+    padding: 4px;
 }
 
 
@@ -171,7 +180,7 @@ form {
 /* contact */
 #contact-heading {
     margin-top: 0.75rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 #email-number-box>div {
@@ -206,11 +215,15 @@ form {
 
 
 /* Submit Button */
-#submit {
+#submit-cancel-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#submit,
+#cancel {
     width: 100%;
-    background-color: var(--tr-color);
-    color: var(--text-color);
-    border: 5px solid var(--sc-color);
     padding-block: 8px;
     font-size: var(--font-size);
     border-radius: var(--br-radius);
@@ -218,7 +231,23 @@ form {
     transition: all 0.2 ease;
 }
 
-#submit:hover {
+#submit {
+    background-color: var(--sc-color);
+    color: var(--tr-color);
+    border: 5px solid var(--sc-color);
+}
+
+#cancel {
+    background-color: var(--tr-color);
+    color: var(--text-color);
+    border: 5px solid var(--sc-color);
+}
+
+#submit:hover{
+    background-color:#101c61;
+    color: #dff4fe
+}
+#cancel:hover {
     background-color: var(--sc-color);
     color: var(--pr-color);
 }
@@ -254,43 +283,44 @@ form {
     #student-name-box>div,
     #email-number-box>div {
         width: 100%;
-       
+
     }
 }
 
 
 /* Mobile */
 @media screen and (max-width:480px) {
-    body{
+    body {
         padding: 0px;
         padding-block: 2rem;
     }
 
-    #student-name-box{
+    #student-name-box {
         gap: 0rem;
     }
+
     #student-name-box p,
-    #email-number-box p{
+    #email-number-box p {
         margin-bottom: 0.40rem;
     }
 
 
-    #dob-gender-box > div{
+    #dob-gender-box>div {
         width: 100%;
 
     }
 
-    #dob-box{
+    #dob-box {
         flex-direction: column;
         align-items: flex-start;
         gap: 4px;
     }
 
-    #dob-box > input{
+    #dob-box>input {
         width: 100%;
     }
 
-    #email-number-box{
+    #email-number-box {
         gap: 0rem;
     }
 }
