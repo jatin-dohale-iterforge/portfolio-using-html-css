@@ -1,3 +1,5 @@
+
+//  Creating floating label for name
 const box = document.querySelectorAll("#student-name-box > div > div");
 
 box.forEach((inputBox) => {
@@ -14,6 +16,8 @@ box.forEach((inputBox) => {
     })
 })
 
+
+//  Creating floating label for Email and Mobile Number
 const box2 = document.querySelectorAll("#email-number-box > div > div");
 
 box2.forEach((inputBox) => {
@@ -28,4 +32,16 @@ box2.forEach((inputBox) => {
         inputBox.children[1].classList.add("active-input")
         inputBox.children[1].focus()
     })
+})
+
+
+// About ShowCase
+const aboutCheck = document.querySelector("#check-about");
+aboutCheck.addEventListener("click", () => {
+    const about = document.querySelector("#about");
+    if (about.classList.contains("hidden")) {
+        about.classList.remove("hidden");
+    } else {
+        about.classList.add("hidden");
+    }
 })
