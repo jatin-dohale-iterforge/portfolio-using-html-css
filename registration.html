@@ -105,8 +105,13 @@
             <!-- About me -->
              <div id="about-box">
                 <div >
-                    <label for="check-about" class="label-text">About Me</label>
-                    <input type="checkbox" id="check-about">
+                    <div>
+                        <label for="check-about" class="label-text">About Me</label>
+                        <input type="checkbox" id="check-about">
+                    </div>
+                    <div id="count-box" >
+                        <p class="hidden"><span id="char-count">0</span>/1024</p>
+                    </div>
                 </div>
                 <textarea type="text" name="about" id="about" class="hidden" placeholder="Write Here..." minlength="1" maxlength="1024"></textarea>
              </div>

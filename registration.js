@@ -1,6 +1,6 @@
-var formOkay = true;
+var formOkay = false;
 
-// captalize function
+// capitalize function
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -22,21 +22,22 @@ const nameChecker = (input, str) => {
         formOkay = false;
     } else {
         input.parentElement.nextElementSibling.classList.add("invisible");
+        formOkay = true;
     }
 
 }
 
 const firstName = document.getElementById("first-name")
 firstName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
-firstName.addEventListener("change",(e)=>e.target.value = capitalize(e.target.value))
+firstName.addEventListener("change", (e) => e.target.value = capitalize(e.target.value))
 
 const middleName = document.getElementById("middle-name")
 middleName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
-middleName.addEventListener("change",(e)=>e.target.value = capitalize(e.target.value))
+middleName.addEventListener("change", (e) => e.target.value = capitalize(e.target.value))
 
 const lastName = document.getElementById("last-name")
 lastName.addEventListener("input", (e) => nameChecker(e.target, e.target.value))
-lastName.addEventListener("change",(e)=>e.target.value = capitalize(e.target.value))
+lastName.addEventListener("change", (e) => e.target.value = capitalize(e.target.value))
 
 
 // Number Checker
@@ -50,6 +51,7 @@ const numberChecker = (numberInput) => {
     if (numberInput.value.length === 10) {
         numberInput.parentElement.nextElementSibling.classList.add("invisible");
         formOkay = true;
+        console.log("running")
     } else {
         numberInput.parentElement.nextElementSibling.innerText = "Please Enter Valid Number";
         numberInput.parentElement.nextElementSibling.classList.remove("invisible");
@@ -60,6 +62,32 @@ const numberChecker = (numberInput) => {
 
 const mobile = document.getElementById("mobile")
 mobile.addEventListener("input", (e) => numberChecker(e.target))
+
+
+// email Validation
+const emailChecker = (emailInput, str) => {
+    const isEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(str)
+
+    if (emailInput.value.length === 0) {
+        emailInput.parentElement.nextElementSibling.innerText = "Email Number is Required";
+        emailInput.parentElement.nextElementSibling.classList.remove("invisible");
+        formOkay = false;
+        return
+    }
+    if (!isEmail) {
+        emailInput.parentElement.nextElementSibling.innerText = "Please Enter Valid email";
+        emailInput.parentElement.nextElementSibling.classList.remove("invisible");
+        formOkay = false;
+    } else {
+        emailInput.parentElement.nextElementSibling.classList.add("invisible");
+        formOkay = true;
+    }
+
+}
+
+const email = document.getElementById("email")
+email.addEventListener("input", (e) => emailChecker(e.target, e.target.value))
+
 
 // Date Validation Checker
 const dateChecker = () => {
@@ -115,20 +143,32 @@ box2.forEach((inputBox) => {
 
 // About ShowCase
 const aboutCheck = document.querySelector("#check-about");
+const countBox = document.querySelector("#count-box p");
+const charCount = document.getElementById("char-count");
+const textArea = document.querySelector("#about-box textarea")
 aboutCheck.addEventListener("click", () => {
     const about = document.querySelector("#about");
     if (about.classList.contains("hidden")) {
         about.classList.remove("hidden");
+        countBox.classList.remove("hidden")
     } else {
         about.classList.add("hidden");
+        countBox.classList.add("hidden");
     }
 })
+
+// about count updater
+textArea.addEventListener("input", (e) => {
+    charCount.innerText = e.target.value.length
+})
+
 
 
 // function for resetting form
 const formInputs = [...document.querySelectorAll("form input")].slice(0, 4);
 const genderRadios = document.querySelectorAll("#gender-box input")
 const errorTexts = [...document.querySelectorAll("form p")].slice(1);
+
 const resetForm = () => {
     box.forEach((inputBox) => {
         inputBox.classList.remove("active-box")
@@ -151,9 +191,15 @@ const resetForm = () => {
     genderRadios.forEach((radio) => {
         radio.checked = false
     })
+
+    mobile.value = "";
+    email.value = "";
+
     errorTexts.forEach((text => {
         text.classList.add("invisible");
     }))
+
+    formOkay = false;
 }
 
 
@@ -165,25 +211,28 @@ const emailNumberInputs = document.querySelectorAll("#email-number-box input")
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
-
+    console.log("1", formOkay)
     formInputs.forEach((input) => {
+        console.log(input)
         if (input.value === "") {
             input.parentElement.nextElementSibling.classList.remove("invisible");
             formOkay = false;
         }
     })
-
+    console.log("2", formOkay)
     emailNumberInputs.forEach((input) => {
         if (input.value === "") {
             input.parentElement.nextElementSibling.classList.remove("invisible");
             formOkay = false;
         }
     })
-
+    console.log("3", formOkay)
     numberChecker(emailNumberInputs[1]);
-
+    console.log("4", formOkay)
     if (formOkay) {
+        console.log(formOkay)
         alert("Form Submit Successfully")
+
         resetForm();
     }
 

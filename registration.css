@@ -198,9 +198,15 @@ form {
     margin-top: 1rem;
 }
 
+#about-box > div{
+    display: flex ;
+    justify-content: space-between;
+    align-items: center;
+}
 
 
-#about-box>div {
+
+#about-box>div>div {
     display: flex;
     align-items: center;
     gap: 4px;
