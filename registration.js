@@ -1,4 +1,25 @@
+
+let studentList = (localStorage.getItem("studentList") ? JSON.parse(localStorage.getItem("studentList")): []);
+
+
+
+const getGender = ()=>{
+    let result ;
+    genderRadios.forEach((item)=>{
+        if (item.checked == true){result =  item.value;}
+    })
+    return result;
+}
+
+
+
+
+
+// ==========================//
+//      Form Logics         //
+//==========================//
 var formOkay = false;
+var studentForm = false;
 
 // capitalize function
 function capitalize(str) {
@@ -51,7 +72,6 @@ const numberChecker = (numberInput) => {
     if (numberInput.value.length === 10) {
         numberInput.parentElement.nextElementSibling.classList.add("invisible");
         formOkay = true;
-        console.log("running")
     } else {
         numberInput.parentElement.nextElementSibling.innerText = "Please Enter Valid Number";
         numberInput.parentElement.nextElementSibling.classList.remove("invisible");
@@ -211,28 +231,32 @@ const emailNumberInputs = document.querySelectorAll("#email-number-box input")
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
-    console.log("1", formOkay)
     formInputs.forEach((input) => {
-        console.log(input)
         if (input.value === "") {
             input.parentElement.nextElementSibling.classList.remove("invisible");
             formOkay = false;
         }
     })
-    console.log("2", formOkay)
     emailNumberInputs.forEach((input) => {
         if (input.value === "") {
             input.parentElement.nextElementSibling.classList.remove("invisible");
             formOkay = false;
         }
     })
-    console.log("3", formOkay)
     numberChecker(emailNumberInputs[1]);
-    console.log("4", formOkay)
     if (formOkay) {
-        console.log(formOkay)
-        alert("Form Submit Successfully")
-
+        alert("Form Submit Successfully");
+        studentList.push({
+            "first-name":firstName.value,
+            "middle-name":middleName.value,
+            "last-name":lastName.value,
+            "gender":getGender(),
+            "email":email.value,
+            "mobile":mobile.value,
+            "dob":dob.value,
+            "about":about.value,
+        })
+        localStorage.setItem("studentList",JSON.stringify(studentList));
         resetForm();
     }
 
@@ -244,4 +268,46 @@ const cancelButton = document.getElementById("cancel")
 cancelButton.addEventListener("click", (e) => {
     e.preventDefault();
     resetForm();
+    closeStudentForm();
 })
+
+
+
+
+
+// ==========================//
+//      Table Logics         //
+//==========================//
+const formBox = document.getElementById("form-box");
+const dataTable = document.getElementById("data-table");
+
+// function for opening Form
+const openStudentForm = () =>{
+    formBox.classList.remove("hidden");
+    dataTable.classList.add("hidden");
+    addButton.parentElement.classList.add("hidden");
+    addButton.parentElement.parentElement.className = "center";
+}
+
+// function for Closing Form
+const closeStudentForm = () =>{
+    formBox.classList.add("hidden");
+    dataTable.classList.remove("hidden");
+    addButton.parentElement.classList.remove("hidden");
+    addButton.parentElement.parentElement.className = "heading-change ";
+}
+
+// add button functional
+const addButton = document.getElementById("add-button")
+addButton.addEventListener("click",()=>openStudentForm())
+
+// edit button functional
+const editButton = document.querySelectorAll(".edit-button");
+editButton.forEach((button)=>{
+    button.addEventListener("click",(e)=>{
+       
+    })
+})
+
+// delete button functional 
+const deleteButton = document.getElementById("delete-button");

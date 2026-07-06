@@ -27,6 +27,14 @@
     display: none;
 }
 
+.scrollbar-hide{
+     -ms-overflow-style: none ;
+    scrollbar-width: none ;
+}
+.scrollbar-hide::-webkit-scrollbar{
+     display: none ;
+}
+
 
 body {
     display: flex;
@@ -35,6 +43,12 @@ body {
     padding: 2rem;
     background-image: url("assets/registration/university.jpg");
     filter: blur(0px);
+-ms-overflow-style: none ;
+    scrollbar-width: none ;
+}
+
+body::-webkit-scrollbar{
+    display: none;
 }
 
 .background-edit {
@@ -46,29 +60,34 @@ body {
     background-image: linear-gradient(120deg, #905de9 0%, #c62feb 100%);
 }
 
-
-.heading-change{
-    z-index: 10;
+#heading-div{
+     z-index: 10;
     width: 100%;
     display: flex;
     align-items: center;
+}
+
+
+.heading-change {
     justify-content: space-between;
     padding-inline: 2%;
 }
 
 
-.heading{
+.heading {
     text-align: center;
     color: var(--pr-color);
     margin-bottom: 1rem;
 }
 
-.add-button{
+#add-button {
     background-color: var(--sc-color);
     font-weight: 700;
     color: var(--tr-color);
     font-size: 16px;
 }
+
+
 
 
 
@@ -306,7 +325,6 @@ form {
 
 }
 
-
 /* large Mobile */
 @media screen and (max-width: 768px) {
 
@@ -327,69 +345,6 @@ form {
 
     }
 }
-
-
-/*****************/
-/* Table Styling */
-/*****************/
-table {
-    z-index: 10;
-    width: 100%;
-    color: var(--text-color);
-    background-color: var(--tr-color);
-    border-radius: var(--br-radius);
-    border-collapse: collapse;
-}
-
-thead > tr{
-    height: 2rem;
-}
-
-tr{
-    border-block: 2px solid var(--text-color);
-    
-}
-
-td{
-    text-align: center;
-}
-
-.name-col{
-    width: 24%;
-}
-
-.contact-col{
-    width: 30%;
-}
-
-.other-col{
-    width: 36%;
-}
-
-.action-col{
-    width: 10%;
-}
-
-.about-col{
-    width: 20%;
-    padding: 4px;
-    text-align: justify;
-}
-
-.about-col-div {
-    width: 100%;
-    height: 100px;
-    margin: 0;
-    padding: 0;
-    overflow-y: scroll
-}
-
-.table-button{
-    width: 80%;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-}
-
 
 /* Mobile */
 @media screen and (max-width:480px) {
@@ -416,4 +371,70 @@ td{
     #email-number-box {
         gap: 0rem;
     }
+}
+
+/*****************/
+/* Table Styling */
+/*****************/
+table {
+    z-index: 10;
+    width: 100%;
+    color: var(--text-color);
+    background-color: var(--tr-color);
+    border-radius: var(--br-radius);
+    border-collapse: collapse;
+}
+
+thead>tr {
+    height: 2rem;
+}
+
+tr {
+    border-block: 2px solid var(--text-color);
+
+}
+
+td {
+    text-align: center;
+}
+
+.name-col {
+    width: 21%;
+}
+
+.contact-col {
+    width: 33%;
+}
+
+.other-col {
+    width: 36%;
+}
+
+.action-col {
+    width: 10%;
+}
+
+.about-col {
+    width: 20%;
+    padding: 4px;
+    text-align: justify;
+}
+
+.about-col-div {
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+
+
+.table-button {
+    width: 80%;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    background-color: var(--sc-color);
+    color: var(--tr-color);
+
 }
