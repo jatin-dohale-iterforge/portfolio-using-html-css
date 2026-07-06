@@ -16,13 +16,18 @@
     <div class="background-edit"></div>
 
     <!--Main Heading -->
-    <div id="heading">
-        <h1>ABC University</h1>
-        <p>Student Registration Form</p>
+    <div id="heading-div" class="heading-change">
+        <div class="heading">
+            <h1>ABC University</h1>
+            <p id="sub-heading">Student Registration Form</p>
+        </div>
+        <div>
+            <button class="button add-button">Add student</button>
+        </div>
     </div>
 
     <!-- Form -->
-    <div id="form-box" class="center">
+    <div id="form-box" class="center hidden">
         <form action="">
             <div>
                 <h2>Personal Information</h2>
@@ -35,7 +40,8 @@
                 <div>
                     <div class="center">
                         <label for="first-name" class="">First Name</label>
-                        <input id="first-name" name="first-name" class="deactive-link" type="text" placeholder="Eg.Jatin">
+                        <input id="first-name" name="first-name" class="deactive-link" type="text"
+                            placeholder="Eg.Jatin">
                     </div>
                     <p class="error-msg invisible">First Name is Required !!</p>
                 </div>
@@ -43,7 +49,8 @@
                 <div>
                     <div class="center">
                         <label for="middle-name" class="">Middle Name</label>
-                        <input id="middle-name"  name="middle-name" class="deactive-link" type="text" placeholder="Eg.Ganesh" >
+                        <input id="middle-name" name="middle-name" class="deactive-link" type="text"
+                            placeholder="Eg.Ganesh">
                     </div>
                     <p class="error-msg invisible">Middle Name is Required !!</p>
                 </div>
@@ -51,7 +58,8 @@
                 <div>
                     <div class="center">
                         <label for="last-name" class="">Last Name</label>
-                        <input id="last-name"  name="last-name" class="deactive-link" type="text" placeholder="Eg.Dohale">
+                        <input id="last-name" name="last-name" class="deactive-link" type="text"
+                            placeholder="Eg.Dohale">
                     </div>
                     <p class="error-msg invisible">Last Name is Required !!</p>
                 </div>
@@ -89,47 +97,160 @@
                 <div>
                     <div class="center">
                         <label for="email" class="">Email</label>
-                        <input id="email" type="email" placeholder="Eg. jatindohale@gmail.com" class="deactive-link" >
+                        <input id="email" type="email" placeholder="Eg. jatindohale@gmail.com" class="deactive-link">
                     </div>
                     <p class="error-msg invisible">Email is Required !!</p>
                 </div>
                 <div>
                     <div class="center">
                         <label for="mobile" class="">Mobile No.</label>
-                        <input id="mobile" type="number" placeholder="Eg. 908217XXXX" class="deactive-link" >
+                        <input id="mobile" type="number" placeholder="Eg. 908217XXXX" class="deactive-link">
                     </div>
                     <p class="error-msg invisible">Number is Required !!</p>
                 </div>
             </div>
 
             <!-- About me -->
-             <div id="about-box">
-                <div >
+            <div id="about-box">
+                <div>
                     <div>
                         <label for="check-about" class="label-text">About Me</label>
                         <input type="checkbox" id="check-about">
                     </div>
-                    <div id="count-box" >
+                    <div id="count-box">
                         <p class="hidden"><span id="char-count">0</span>/1024</p>
                     </div>
                 </div>
-                <textarea type="text" name="about" id="about" class="hidden" placeholder="Write Here..." minlength="1" maxlength="1024"></textarea>
-             </div>
+                <textarea type="text" name="about" id="about" class="hidden" placeholder="Write Here..." minlength="1"
+                    maxlength="1024"></textarea>
+            </div>
 
-             <!-- Submit Button -->
-              <div id="submit-cancel-button">
-                  <button type="submit" id="submit">
+            <!-- Submit Button -->
+            <div id="submit-cancel-button">
+                <button type="submit" id="submit">
                     Submit
-                  </button>
-                  <button type="button" id="cancel">
+                </button>
+                <button type="button" id="cancel">
                     Cancel
-                  </button>
-              </div>
+                </button>
+            </div>
 
 
 
         </form>
     </div>
+
+
+    <!-- Table for showing student data  -->
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th colspan="3" class="name-col">Name</th>
+                <th colspan="2" class="contact-col">Contact</th>
+                <th colspan="3" class="other-col">Other</th>
+                <th rowspan="2" class="action-col">Actions</th>
+            </tr>
+            <tr>
+                <th>First</th>
+                <th>Middle</th>
+                <th>Last</th>
+                <th>Email</th>
+                <th>Mobil No.</th>
+                <th>Gender</th>
+                <th>Birth Date</th>
+                <th>About</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td>Jatin</td>
+                <td>Ganesh</td>
+                <td>Dohale</td>
+                <td>jatin@gmail.com</td>
+                <td>90821724XXXX</td>
+                <td>Male</td>
+                <td>12-04-2004</td>
+                <td class="about-col">
+                    <div class="about-col-div">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, dolore! Et veniam non commodi asperiores animi dolorem! Numquam, dolorum doloribus.   
+                    </div>
+                </td>
+                <td >
+                    <button class="button table-button">Edit</button>
+                    <button class="button table-button">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Jatin</td>
+                <td>Ganesh</td>
+                <td>Dohale</td>
+                <td>jatin@gmail.com</td>
+                <td>90821724XXXX</td>
+                <td>Male</td>
+                <td>12-04-2004</td>
+                <td class="about-col">
+                    <div class="about-col-div">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, dolore! Et veniam non commodi asperiores animi dolorem! Numquam, dolorum doloribus.   
+                    </div>
+                </td>
+                <td >
+                    <button class="button table-button">Edit</button>
+                    <button class="button table-button">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Jatin</td>
+                <td>Ganesh</td>
+                <td>Dohale</td>
+                <td>jatin@gmail.com</td>
+                <td>90821724XXXX</td>
+                <td>Male</td>
+                <td>12-04-2004</td>
+                <td class="about-col">
+                    <div class="about-col-div">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, dolore! Et veniam non commodi asperiores animi dolorem! Numquam, dolorum doloribus.   
+                    </div>
+                </td>
+                <td >
+                    <button class="button table-button">Edit</button>
+                    <button class="button table-button">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Jatin</td>
+                <td>Ganesh</td>
+                <td>Dohale</td>
+                <td>jatin@gmail.com</td>
+                <td>90821724XXXX</td>
+                <td>Male</td>
+                <td>12-04-2004</td>
+                <td class="about-col">
+                    <div class="about-col-div">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, dolore! Et veniam non commodi asperiores animi dolorem! Numquam, dolorum doloribus.   
+                    </div>
+                </td>
+                <td >
+                    <button class="button table-button">Edit</button>
+                    <button class="button table-button">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Jatin</td>
+                <td>Ganesh</td>
+                <td>Dohale</td>
+                <td>jatin@gmail.com</td>
+                <td>90821724XXXX</td>
+                <td>Male</td>
+                <td>12-04-2004</td>
+                <td class="about-col">
+                    <div class="about-col-div">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, dolore! Et veniam non commodi asperiores animi dolorem! Numquam, dolorum doloribus.   
+                    </div>
+                </td>
+                <td >
+                    <button class="button table-button">Edit</button>
+                    <button class="button table-button">Delete</button>
+                </td>
+            </tr>
+         
+        </tbody>
+    </table>
     <script src="registration.js"></script>
 </body>
 
