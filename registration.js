@@ -26,7 +26,6 @@ setStudentListing();
 
 
 
-
 // ==========================//
 //      Form Logics         //
 //==========================//
@@ -391,4 +390,33 @@ const deleteStudent = (id) => {
     setStudentListing();
 
 }
+
+// sorting
+const tableTh =  document.querySelectorAll(".sorting");
+tableTh.forEach((th)=>{
+    th.addEventListener("click",(e)=>{
+
+        tableTh.forEach((th)=>{
+            th.innerText = th.innerText.split(" ")[0]
+        })
+
+       if(e.target.dataset.direction == "null"){
+        studentList = studentList.sort((a,b)=> a[`${e.target.dataset.elementName}`].localeCompare(b[`${e.target.dataset.elementName}`] ) )
+        e.target.dataset.direction = "asc";
+        e.target.innerText = e.target.innerText.split(" ")[0] + " ⇩"
+
+       }else if(e.target.dataset.direction == "asc"){
+         studentList = studentList.sort((a,b)=> b[`${e.target.dataset.elementName}`].localeCompare(a[`${e.target.dataset.elementName}`] ) )
+         e.target.dataset.direction = "des";
+         e.target.innerText = e.target.innerText.split(" ")[0] + " ⇧";
+
+       }else if(e.target.dataset.direction == "des"){
+        studentList = JSON.parse(localStorage.getItem("studentList"));
+        e.target.dataset.direction = "null";
+         e.target.innerText = e.target.innerText.split(" ")[0];
+       }
+       setStudentListing()
+    })
+})
+
 

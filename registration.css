@@ -192,6 +192,10 @@ form {
     padding: 4px;
 }
 
+.sorting{
+    cursor: pointer;
+}
+
 mobile::-webkit-inner-spin-button, 
 mobile::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
@@ -450,4 +454,16 @@ td {
     background-color: var(--sc-color);
     color: var(--tr-color);
 
+}
+
+.name-sub-head{
+    width: 6.5%;
+}
+
+.contact-sub-head{
+    width: 15%;
+}
+
+.other-sub-head{
+    width: 7%;
 }
