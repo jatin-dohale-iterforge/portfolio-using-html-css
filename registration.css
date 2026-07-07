@@ -35,6 +35,14 @@
      display: none ;
 }
 
+#search-box{
+    width: 50%;
+    border-radius: 20px;
+    outline: none;
+    border: 2px solid var(--text-color);
+    padding-left: 16px;
+}
+
 
 body {
     min-width: 100vw;
@@ -435,6 +443,7 @@ td {
     width: 20%;
     padding: 4px;
     text-align: justify;
+    word-break: break-all;
 }
 
 .about-col-div {
@@ -465,5 +474,14 @@ td {
 }
 
 .other-sub-head{
-    width: 7%;
+    width: 8%;
+}
+
+tbody tr{
+    border: none;
+}
+
+tbody tr:nth-child(odd){
+    background-color: #a5aee2;
+    color: var(--tr-color);
 }

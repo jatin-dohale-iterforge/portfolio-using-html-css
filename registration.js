@@ -14,14 +14,14 @@ const getGender = () => {
 
 const tableBody = document.querySelector("tbody");
 
-const setStudentListing = () => {
+const setStudentListing = (studentList) => {
     tableBody.innerHTML = "";
     studentList.forEach((item) => {
         tableBody.innerHTML += `<tr><td>${item.id}</td><td>${item.firstName}</td><td>${item.middleName}</td><td>${item.lastName}</td><td>${item.email}</td><td>${item.mobile}</td><td>${item.gender}</td><td>${item.dob}</td><td class="about-col"><div class="about-col-div scrollbar-hide">${item.about}</div></td><td ><button data-student-id=${item.id} class="edit-button button table-button" onClick={editStudent(${item.id})}>Edit</button><button class="delete-button button table-button" onClick={deleteStudent(${item.id})}>Delete</button></td> </tr>`
     })
 };
 
-setStudentListing();
+setStudentListing(studentList);
 
 
 
@@ -332,7 +332,7 @@ const closeStudentForm = () => {
     addButton.parentElement.parentElement.className = "heading-change ";
     edit = false;
     currentId = undefined;
-    setStudentListing();
+    setStudentListing(studentList);
 }
 
 // add button functional
@@ -387,11 +387,11 @@ const editStudent = (id) => {
 const deleteStudent = (id) => {
     studentList = studentList.filter(item => item.id !== id);
     localStorage.setItem("studentList", JSON.stringify(studentList));
-    setStudentListing();
+    setStudentListing(studentList);
 
 }
 
-// sorting
+// sorting logic
 const tableTh =  document.querySelectorAll(".sorting");
 tableTh.forEach((th)=>{
     th.addEventListener("click",(e)=>{
@@ -415,8 +415,28 @@ tableTh.forEach((th)=>{
         e.target.dataset.direction = "null";
          e.target.innerText = e.target.innerText.split(" ")[0];
        }
-       setStudentListing()
+       setStudentListing(studentList)
     })
 })
 
 
+// Searching Logic
+const searchFilter = (str) =>{
+    if(str == ""){
+    setStudentListing(studentList);
+    }else{
+        let filteredList = studentList.filter((item)=>{
+            return item.firstName.toLowerCase().includes(str) ||
+                   item.lastName.toLowerCase().includes(str) ||
+                   item.mobile.toLowerCase().includes(str) ||
+                   item.email.toLowerCase().includes(str)
+        })
+        setStudentListing(filteredList)
+    }
+}
+    
+
+const searchBox = document.getElementById("search-box");
+
+
+searchBox.addEventListener("input",(e)=>searchFilter(e.target.value.toLowerCase()))
