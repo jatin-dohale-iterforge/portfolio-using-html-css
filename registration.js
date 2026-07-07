@@ -1,15 +1,27 @@
 
-let studentList = (localStorage.getItem("studentList") ? JSON.parse(localStorage.getItem("studentList")): []);
+let studentList = localStorage.getItem("studentList") ? JSON.parse(localStorage.getItem("studentList")) : [];;
+let edit = false;
+let currentId = undefined;
 
 
-
-const getGender = ()=>{
-    let result ;
-    genderRadios.forEach((item)=>{
-        if (item.checked == true){result =  item.value;}
+const getGender = () => {
+    let result;
+    genderRadios.forEach((item) => {
+        if (item.checked == true) { result = item.value; }
     })
     return result;
 }
+
+const tableBody = document.querySelector("tbody");
+
+const setStudentListing = () => {
+    tableBody.innerHTML = "";
+    studentList.forEach((item) => {
+        tableBody.innerHTML += `<tr><td>${item.id}</td><td>${item.firstName}</td><td>${item.middleName}</td><td>${item.lastName}</td><td>${item.email}</td><td>${item.mobile}</td><td>${item.gender}</td><td>${item.dob}</td><td class="about-col"><div class="about-col-div scrollbar-hide">${item.about}</div></td><td ><button data-student-id=${item.id} class="edit-button button table-button" onClick={editStudent(${item.id})}>Edit</button><button class="delete-button button table-button" onClick={deleteStudent(${item.id})}>Delete</button></td> </tr>`
+    })
+};
+
+setStudentListing();
 
 
 
@@ -138,6 +150,8 @@ box.forEach((inputBox) => {
     })
 })
 
+
+
 // Creating Floating Label for Date of Birth
 const dobBox = document.getElementById("dob-box")
 dobBox.addEventListener("click", () => {
@@ -246,18 +260,40 @@ form.addEventListener("submit", (e) => {
     numberChecker(emailNumberInputs[1]);
     if (formOkay) {
         alert("Form Submit Successfully");
-        studentList.push({
-            "first-name":firstName.value,
-            "middle-name":middleName.value,
-            "last-name":lastName.value,
-            "gender":getGender(),
-            "email":email.value,
-            "mobile":mobile.value,
-            "dob":dob.value,
-            "about":about.value,
-        })
-        localStorage.setItem("studentList",JSON.stringify(studentList));
+        if (edit) {
+            console.log(1)
+            studentList.find(item => {
+                if (item.id == currentId) {
+                    item.firstName = firstName.value
+                    item.middleName = middleName.value
+                    item.lastName = lastName.value
+                    item.gender = getGender()
+                    item.email = email.value
+                    item.mobile = mobile.value
+                    item.dob = dob.value
+                    item.about = about.value
+                }
+                currentId = undefined;
+                edit = false;
+            })
+
+        } else {
+            studentList.push({
+                "id": studentList.length >= 1 ? studentList[studentList.length - 1].id + 1 : 1,
+                "firstName": firstName.value,
+                "middleName": middleName.value,
+                "lastName": lastName.value,
+                "gender": getGender(),
+                "email": email.value,
+                "mobile": mobile.value,
+                "dob": dob.value,
+                "about": about.value,
+            })
+        }
+        localStorage.setItem("studentList", JSON.stringify(studentList));
         resetForm();
+
+        closeStudentForm();
     }
 
 })
@@ -282,7 +318,7 @@ const formBox = document.getElementById("form-box");
 const dataTable = document.getElementById("data-table");
 
 // function for opening Form
-const openStudentForm = () =>{
+const openStudentForm = () => {
     formBox.classList.remove("hidden");
     dataTable.classList.add("hidden");
     addButton.parentElement.classList.add("hidden");
@@ -290,24 +326,69 @@ const openStudentForm = () =>{
 }
 
 // function for Closing Form
-const closeStudentForm = () =>{
+const closeStudentForm = () => {
     formBox.classList.add("hidden");
     dataTable.classList.remove("hidden");
     addButton.parentElement.classList.remove("hidden");
     addButton.parentElement.parentElement.className = "heading-change ";
+    edit = false;
+    currentId = undefined;
+    setStudentListing();
 }
 
 // add button functional
 const addButton = document.getElementById("add-button")
-addButton.addEventListener("click",()=>openStudentForm())
+addButton.addEventListener("click", () => openStudentForm())
+
 
 // edit button functional
-const editButton = document.querySelectorAll(".edit-button");
-editButton.forEach((button)=>{
-    button.addEventListener("click",(e)=>{
-       
-    })
-})
+const editStudent = (id) => {
+    studentList.find(item => {
+        if (item.id == id) {
+            openStudentForm();
+            edit = true;
+            currentId = item.id;
+            firstName.value = item.firstName;
+            middleName.value = item.middleName;
+            lastName.value = item.lastName;
+            mobile.value = item.mobile;
+            email.value = item.email;
+            dob.value = item.dob;
+            genderRadios.forEach((radio) => {
+                if (radio.id == item.gender) {
+                    radio.checked = true;
+                }
+            })
 
-// delete button functional 
-const deleteButton = document.getElementById("delete-button");
+            box.forEach((inputBox) => {
+                inputBox.classList.add("active-box")
+                inputBox.children[0].classList.add("active-text")
+                inputBox.children[1].className = "active-input";
+                inputBox.children[1].focus();
+            })
+
+            dobBox.classList.add("active-box")
+            dobBox.children[0].classList = "active-text align-start"
+            dobBox.children[1].className = "active-input";
+            dobBox.children[1].focus();
+
+
+            box2.forEach((inputBox) => {
+                inputBox.classList.add("active-box")
+                inputBox.children[0].classList.add("active-text")
+                inputBox.children[1].className = "active-input";
+                inputBox.children[1].focus()
+            })
+        }
+
+    })
+}
+
+//  delete button functional 
+const deleteStudent = (id) => {
+    studentList = studentList.filter(item => item.id !== id);
+    localStorage.setItem("studentList", JSON.stringify(studentList));
+    setStudentListing();
+
+}
+

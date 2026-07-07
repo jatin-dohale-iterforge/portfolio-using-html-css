@@ -37,6 +37,8 @@
 
 
 body {
+    min-width: 100vw;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,6 +190,12 @@ form {
     top: -15px;
     background-color: var(--tr-color);
     padding: 4px;
+}
+
+mobile::-webkit-inner-spin-button, 
+mobile::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 
@@ -379,6 +387,7 @@ form {
 table {
     z-index: 10;
     width: 100%;
+    min-height: 150px ;
     color: var(--text-color);
     background-color: var(--tr-color);
     border-radius: var(--br-radius);
@@ -398,16 +407,20 @@ td {
     text-align: center;
 }
 
+.sr-no{
+    width: 5%;
+}
+
 .name-col {
-    width: 21%;
+    width: 20%;
 }
 
 .contact-col {
-    width: 33%;
+    width: 30%;
 }
 
 .other-col {
-    width: 36%;
+    width: 35%;
 }
 
 .action-col {
