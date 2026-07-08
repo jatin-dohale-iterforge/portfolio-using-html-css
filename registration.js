@@ -19,7 +19,7 @@ const setStudentListing = (studentList) => {
   } else {
     tableBody.innerHTML = "";
     studentList.forEach((item) => {
-      tableBody.innerHTML += `<tr><td>${item.id}</td><td>${item.firstName}</td><td>${item.middleName}</td><td>${item.lastName}</td><td>${item.email}</td><td>${item.mobile}</td><td>${item.gender}</td><td>${item.dob}</td><td class="about-col"><div class="about-col-div scrollbar-hide">${item.about}</div></td><td ><button data-student-id=${item.id} class="edit-button button table-button" onClick={editStudent(${item.id})}>Edit</button><button class="delete-button button table-button" onClick={deleteStudent(${item.id})}>Delete</button></td> </tr>`;
+      tableBody.innerHTML += `<tr><td data-title="ID">${item.id}</td><td data-title="First Name">${item.firstName}</td><td data-title="Middle Name">${item.middleName}</td><td data-title="Last Name">${item.lastName}</td><td data-title="Email">${item.email}</td><td data-title="Mobile">${item.mobile}</td><td data-title="Gender">${item.gender}</td><td data-title="Date of Birth">${item.dob}</td><td class="about-col" data-title="About"><div class="about-col-div scrollbar-hide">${item.about}</div></td><td ><button data-student-id=${item.id} class="edit-button button table-button" onClick={editStudent(${item.id})}>Edit</button><button class="delete-button button table-button" onClick={deleteStudent(${item.id})}>Delete</button></td> </tr>`;
     });
     pag.classList.remove("hidden");
   }

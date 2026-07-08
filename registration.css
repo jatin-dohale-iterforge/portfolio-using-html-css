@@ -1,514 +1,534 @@
 :root {
-    --pr-color: #ecf9ff;
-    --sc-color: #1b2976;
-    --tr-color: #f8f8ff;
-    --text-color: #2c3947c9;
-    --font-size: 18px;
-    --br-radius: 6px;
+  --pr-color: #ecf9ff;
+  --sc-color: #1b2976;
+  --tr-color: #f8f8ff;
+  --text-color: #2c3947c9;
+  --font-size: 18px;
+  --br-radius: 6px;
 }
 
 .label-text {
-    font-size: var(--font-size);
-    font-weight: 700;
-    white-space: nowrap;
+  font-size: var(--font-size);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .error-msg {
-    color: #d83b3bca;
-    /* text-align: center; */
-    margin: 0.25rem 0 0 0.5rem;
+  color: #d83b3bca;
+  /* text-align: center; */
+  margin: 0.25rem 0 0 0.5rem;
 }
 
 .invisible {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
-.scrollbar-hide{
-     -ms-overflow-style: none ;
-    scrollbar-width: none ;
-}
-.scrollbar-hide::-webkit-scrollbar{
-     display: none ;
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-#search-box{
-    width: 50%;
-    border-radius: 20px;
-    outline: none;
-    border: 2px solid var(--text-color);
-    padding-left: 16px;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
+#search-box {
+  width: 50%;
+  border-radius: 20px;
+  outline: none;
+  border: 2px solid var(--text-color);
+  padding-left: 16px;
+}
 
 body {
-    min-width: 97vw;
-    min-height: 95vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5vh 3vw;
-    background-image: url("assets/registration/university.jpg");
-    filter: blur(0px);
--ms-overflow-style: none ;
-    scrollbar-width: none ;
+  min-width: 97vw;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 3vw;
+  background-image: url("assets/registration/university.jpg");
+  filter: blur(0px);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-body::-webkit-scrollbar{
-    display: none;
+body::-webkit-scrollbar {
+  display: none;
 }
 
 .background-edit {
-    width: 100%;
-    height: max(100%,100vh);
-    position: absolute;
-    opacity: 0.8;
-    top: 0;
-    background-image: linear-gradient(120deg, #905de9 0%, #c62feb 100%);
+  width: 100%;
+  height: max(100%, 100vh);
+  position: absolute;
+  opacity: 0.8;
+  top: 0;
+  background-image: linear-gradient(120deg, #905de9 0%, #c62feb 100%);
 }
 
-#heading-div{
-     z-index: 10;
-    width: 100%;
-    display: flex;
-    align-items: center;
+#heading-div {
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
-
 
 .heading-change {
-    justify-content: space-between;
-    padding-inline: 2%;
+  justify-content: space-between;
+  padding-inline: 2%;
 }
 
-
 .heading {
-    text-align: center;
-    color: var(--pr-color);
-    margin-bottom: 1rem;
+  text-align: center;
+  color: var(--pr-color);
+  margin-bottom: 1rem;
 }
 
 #add-button {
-    background-color: var(--sc-color);
-    font-weight: 700;
-    color: var(--tr-color);
-    font-size: 16px;
+  background-color: var(--sc-color);
+  font-weight: 700;
+  color: var(--tr-color);
+  font-size: 16px;
 }
-
-
-
-
-
-
-
 
 /*****************/
 /* Form Styling */
 /*****************/
 
 #form-box {
-    width: 100%;
-    flex-direction: column;
-    z-index: 10;
+  width: 100%;
+  flex-direction: column;
+  z-index: 10;
 }
 
 form {
-    border-radius: 1rem;
-    width: 80%;
-    height: 80%;
-    background-color: var(--tr-color);
-    color: var(--text-color);
-    padding: 1rem;
+  border-radius: 1rem;
+  width: 80%;
+  height: 80%;
+  background-color: var(--tr-color);
+  color: var(--text-color);
+  padding: 1rem;
 }
-
 
 /* Student Name */
 #name-heading {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #student-name-box,
 #email-number-box {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-    color: var(--text-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  color: var(--text-color);
 }
 
-#student-name-box>div {
-    width: 300px;
+#student-name-box > div {
+  width: 300px;
 }
 
-#email-number-box>div {
-    width: 50%;
+#email-number-box > div {
+  width: 50%;
 }
 
-
-
-#student-name-box>div>div,
-#email-number-box>div>div,
+#student-name-box > div > div,
+#email-number-box > div > div,
 #dob-box {
-    width: 100%;
-    height: 3rem;
-    background-color: var(--tr-color);
-    outline: 2px solid var(--text-color);
-    border-radius: var(--br-radius);
-    padding: 4px 8px;
-    flex-grow: 1;
-    justify-content: start;
-    position: relative;
+  width: 100%;
+  height: 3rem;
+  background-color: var(--tr-color);
+  outline: 2px solid var(--text-color);
+  border-radius: var(--br-radius);
+  padding: 4px 8px;
+  flex-grow: 1;
+  justify-content: start;
+  position: relative;
 }
 
 #student-name-box input,
 #email-number-box input,
 #dob-box input {
-    width: 100%;
-    height: 100%;
-    background-color: #eaeaff;
+  width: 100%;
+  height: 100%;
+  background-color: #eaeaff;
 }
 
 .deactive-link {
-    display: none;
+  display: none;
 }
 
 .active-box {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
 .active-input {
-    display: block;
-    height: 70%;
-    outline: none;
-    border: none;
+  display: block;
+  height: 70%;
+  outline: none;
+  border: none;
 }
 
 .active-text {
-    font-size: 16px;
-    text-align: right;
-    transition: all 0.3s ease;
-    position: absolute;
-    top: -15px;
-    background-color: var(--tr-color);
-    padding: 4px;
+  font-size: 16px;
+  text-align: right;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: -15px;
+  background-color: var(--tr-color);
+  padding: 4px;
 }
 
-.sorting{
-    cursor: pointer;
+.sorting {
+  cursor: pointer;
 }
 
-mobile::-webkit-inner-spin-button, 
-mobile::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+mobile::-webkit-inner-spin-button,
+mobile::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-
 
 /* Student Birth date and Gender */
 #dob-gender-box {
-    width: 100%;
-    margin-top: 0.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5%;
+  width: 100%;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5%;
 }
 
-#dob-gender-box>div {
-    width: 45%;
+#dob-gender-box > div {
+  width: 45%;
 }
 
 #dob-box,
 #gender-box {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 40px;
 }
 
 .align-start {
-    align-self: flex-start;
+  align-self: flex-start;
 }
 
 #gender-box {
-    width: 45%;
+  width: 45%;
 }
 
-#gender-box>div {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+#gender-box > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 /* contact */
 #contact-heading {
-    margin-top: 0.75rem;
-    margin-bottom: 1rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
 }
 
-#email-number-box>div {
-    flex-grow: 1;
+#email-number-box > div {
+  flex-grow: 1;
 }
-
 
 /* About Me */
 #about-box {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
-#about-box>div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#about-box > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-
-
-#about-box>div>div {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin-bottom: 0.25rem;
+#about-box > div > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 0.25rem;
 }
 
 #about-box input {
-    width: 0.9rem;
-    height: 0.9rem;
+  width: 0.9rem;
+  height: 0.9rem;
 }
 
 #about-box textarea {
-    resize: none;
-    margin-bottom: 0.5rem;
-    width: 100%;
+  resize: none;
+  margin-bottom: 0.5rem;
+  width: 100%;
 }
-
 
 /* Submit Button */
 #submit-cancel-button {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #submit,
 #cancel {
-    width: 100%;
-    padding-block: 8px;
-    font-size: var(--font-size);
-    border-radius: var(--br-radius);
-    font-weight: 700;
-    transition: all 0.2 ease;
+  width: 100%;
+  padding-block: 8px;
+  font-size: var(--font-size);
+  border-radius: var(--br-radius);
+  font-weight: 700;
+  transition: all 0.2 ease;
 }
 
 #submit {
-    background-color: var(--sc-color);
-    color: var(--tr-color);
-    border: 5px solid var(--sc-color);
+  background-color: var(--sc-color);
+  color: var(--tr-color);
+  border: 5px solid var(--sc-color);
 }
 
 #cancel {
-    background-color: var(--tr-color);
-    color: var(--text-color);
-    border: 5px solid var(--sc-color);
+  background-color: var(--tr-color);
+  color: var(--text-color);
+  border: 5px solid var(--sc-color);
 }
 
 #submit:hover {
-    background-color: #101c61;
-    color: #dff4fe;
+  background-color: #101c61;
+  color: #dff4fe;
 }
 
 #cancel:hover {
-    background-color: var(--sc-color);
-    color: var(--pr-color);
-}
-
-
-/* Media Queries From Here */
-@media (min-width:768px) and (max-width:991px) {
-    .background-bottom {
-        bottom: -30%;
-    }
-
-    #dob-gender-box {
-        flex-direction: column;
-    }
-
-    #dob-gender-box>div:first-child {
-        width: 100%;
-    }
-
-}
-
-/* large Mobile */
-@media screen and (max-width: 768px) {
-
-    .background-bottom {
-        display: hidden;
-    }
-
-    #student-name-box,
-    #dob-gender-box,
-    #email-number-box {
-        flex-direction: column;
-    }
-
-
-    #student-name-box>div,
-    #email-number-box>div {
-        width: 100%;
-
-    }
-}
-
-/* Mobile */
-@media screen and (max-width:480px) {
-    body {
-        padding: 0px;
-        padding-block: 2rem;
-    }
-
-    #student-name-box {
-        gap: 0rem;
-    }
-
-    #student-name-box p,
-    #email-number-box p {
-        margin-bottom: 0.40rem;
-    }
-
-
-    #dob-gender-box>div {
-        width: 100%;
-
-    }
-
-    #email-number-box {
-        gap: 0rem;
-    }
+  background-color: var(--sc-color);
+  color: var(--pr-color);
 }
 
 /*****************/
 /* Table Styling */
 /*****************/
 table {
-    z-index: 10;
-    width: 100%;
-    min-height: 150px ;
-    color: var(--text-color);
-    background-color: var(--tr-color);
-    border-radius: var(--br-radius);
-    border-collapse: collapse;
+  z-index: 10;
+  width: 100%;
+  min-height: 150px;
+  color: var(--text-color);
+  background-color: var(--tr-color);
+  border-radius: var(--br-radius);
+  border-collapse: collapse;
 }
 
-thead{
-    background-color: var(--sc-color);
-    color: var(--tr-color);
+thead {
+  background-color: var(--sc-color);
+  color: var(--tr-color);
 }
 
-thead>tr {
-    border-color: var(--tr-color);
-    height: 2rem;
+thead > tr {
+  border-color: var(--tr-color);
+  height: 2rem;
 }
 
 tr {
-    border-block: 2px solid var(--text-color);
-
+  border-block: 2px solid var(--text-color);
 }
 
 td {
-    text-align: center;
+  text-align: center;
 }
 
-.sr-no{
-    width: 5%;
+.sr-no {
+  width: 5%;
 }
 
 .name-col {
-    width: 20%;
+  width: 20%;
 }
 
 .contact-col {
-    width: 30%;
+  width: 30%;
 }
 
 .other-col {
-    width: 35%;
+  width: 35%;
 }
 
 .action-col {
-    width: 10%;
+  width: 10%;
 }
 
 .about-col {
-    width: 20%;
-    padding: 4px;
-    text-align: justify;
-    word-break: break-all;
+  width: 20%;
+  padding: 4px;
+  text-align: justify;
+  word-break: break-all;
 }
 
 .about-col-div {
-    width: 100%;
-    height: 100px;
-    margin: 0;
-    padding: 0;
-    overflow-y: scroll;
+  width: 100%;
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
 }
-
-
 
 .table-button {
-    width: 80%;
-    margin-bottom: 0.5rem;
-    cursor: pointer;
-    background-color: var(--sc-color);
-    color: var(--tr-color);
-
+  width: 80%;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  background-color: var(--sc-color);
+  color: var(--tr-color);
 }
 
-.name-sub-head{
-    width: 6.5%;
+.name-sub-head {
+  width: 6.5%;
 }
 
-.contact-sub-head{
-    width: 15%;
+.contact-sub-head {
+  width: 15%;
 }
 
-.other-sub-head{
-    width: 8%;
+.other-sub-head {
+  width: 8%;
 }
 
-tbody tr{
-    border: none;
+tbody tr {
+  border: none;
 }
 
-tbody tr:nth-child(odd){
-    background-color: #a5aee2;
-    color: var(--tr-color);
+tbody tr:nth-child(odd) {
+  background-color: #a5aee2;
+  color: var(--tr-color);
 }
 
-#pagination{
-    margin-top: 1rem;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+#pagination {
+  margin-top: 1rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-#pagination span{
-    background-color: var(--sc-color);
-    color: var(--tr-color);   
+#pagination span {
+  background-color: var(--sc-color);
+  color: var(--tr-color);
 }
 
+#prev-button,
+#next-button {
+  width: 100px;
+  margin: 0px;
+}
 
-#prev-button , #next-button{
-    width: 100px ;
-    margin: 0px;
-    
-    
+@media (min-width: 768px) and (max-width: 991px) {
+  .background-bottom {
+    bottom: -30%;
+  }
+
+  #dob-gender-box {
+    flex-direction: column;
+  }
+
+  #dob-gender-box > div:first-child {
+    width: 100%;
+  }
+}
+
+/* large Mobile */
+@media screen and (max-width: 768px) {
+  .background-bottom {
+    display: hidden;
+  }
+
+  #student-name-box,
+  #dob-gender-box,
+  #email-number-box {
+    flex-direction: column;
+  }
+
+  #student-name-box > div,
+  #email-number-box > div {
+    width: 100%;
+  }
+
+  #add-button {
+    font-size: 12px;
+  }
+
+  .table-button {
+    padding-inline: 0rem;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 0px;
+    padding-block: 2rem;
+  }
+
+  #heading-div {
+    display: grid;
+    grid-template-columns: 1.45fr 0.65fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 4px;
+  }
+  .heading{
+        grid-column: span 2;
+        margin: 0;
+  }
+
+  #search-box , #add-button{
+    width: 100%;
+  }
+#add-button > span{
+    display: none;
+}
+
+  #student-name-box {
+    gap: 0rem;
+  }
+
+  #student-name-box p,
+  #email-number-box p {
+    margin-bottom: 0.4rem;
+  }
+
+  #dob-gender-box > div {
+    width: 100%;
+  }
+
+  #email-number-box {
+    gap: 0rem;
+  }
+
+  thead {
+    display: none;
+  }
+
+  td {
+    display: grid;
+    grid-template-columns: 50% auto;
+    text-align: start;
+    gap: 0.5rem;
+    margin: 1rem;
+    font-size: 16px;
+  }
+
+  td::before {
+    content: attr(data-title) "  :";
+  }
+
+  td:last-child::before {
+    content: none;
+    display: block;
+  }
+  
+  [data-title="About"]{
+    display: block;
+  }
 }
