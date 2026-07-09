@@ -1,136 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Registration Form</title>
-    <link rel="stylesheet" href="utility.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="registration.css">
-</head>
+    <link rel="stylesheet" href="utility.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="registration.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- background Effect -->
     <div class="background-edit"></div>
 
     <!--Main Heading -->
-    <div id="heading">
+    <div id="heading-div" class="heading-change">
+      <div class="heading">
         <h1>ABC University</h1>
-        <p>Student Registration Form</p>
+        <p id="sub-heading">Student Registration Form</p>
+      </div>
+      <input id="search-box" type="search" placeholder="Search Here.." oninput="searchFilter(this.value)"/>
+      <div>
+        <button id="add-button" class="button" onclick="openStudentForm()">Add <span>student</span></button>
+      </div>
     </div>
 
     <!-- Form -->
-    <div id="form-box" class="center">
-        <form action="">
-            <div>
-                <h2>Personal Information</h2>
-                <p>Please Provide Your Basic Details</p>
+    <div id="form-box" class="center hidden">
+      <form onsubmit="handleSubmit(event)">
+        <div>
+          <h2>Personal Information</h2>
+          <p>Please Provide Your Basic Details</p>
+        </div>
+
+        <!-- name box -->
+        <h3 id="name-heading" class="label-text">Student Name*</h3>
+        <div id="student-name-box">
+          <div>
+            <div class="center" onclick="elementFloat(this)">
+              <label for="first-name" class="">First Name</label>
+              <input
+                id="first-name"
+                name="first-name"
+                class="deactive-link"
+                type="text"
+                placeholder="Eg.Jatin"
+                oninput="nameChecker(this)"
+                onchange="capitalize(this)"
+              />
             </div>
+            <p class="error-msg invisible">First Name is Required !!</p>
+          </div>
 
-            <!-- name box -->
-            <h3 id="name-heading" class="label-text">Student Name*</h3>
-            <div id="student-name-box">
-                <div>
-                    <div class="center">
-                        <label for="first-name" class="">First Name</label>
-                        <input id="first-name" name="first-name" class="deactive-link" type="text" placeholder="Eg.Jatin">
-                    </div>
-                    <p class="error-msg invisible">First Name is Required !!</p>
-                </div>
-
-                <div>
-                    <div class="center">
-                        <label for="middle-name" class="">Middle Name</label>
-                        <input id="middle-name"  name="middle-name" class="deactive-link" type="text" placeholder="Eg.Ganesh" >
-                    </div>
-                    <p class="error-msg invisible">Middle Name is Required !!</p>
-                </div>
-
-                <div>
-                    <div class="center">
-                        <label for="last-name" class="">Last Name</label>
-                        <input id="last-name"  name="last-name" class="deactive-link" type="text" placeholder="Eg.Dohale">
-                    </div>
-                    <p class="error-msg invisible">Last Name is Required !!</p>
-                </div>
+          <div>
+            <div class="center" onclick="elementFloat(this)">
+              <label for="middle-name" class="">Middle Name</label>
+              <input
+                id="middle-name"
+                name="middle-name"
+                class="deactive-link"
+                type="text"
+                placeholder="Eg.Ganesh"
+                oninput="nameChecker(this)"
+                onchange="capitalize(this)"
+              />
             </div>
+            <p class="error-msg invisible">Middle Name is Required !!</p>
+          </div>
 
-            <!-- Dob and Gender -->
-            <div id="dob-gender-box">
-                <div>
-                    <div id="dob-box">
-                        <label for="dob" class="">Date of Birth</label>
-                        <input id="dob" type="date" placeholder="Pick a Date" class="deactive-link">
-                    </div>
-                    <p class="error-msg invisible">Date of Birth is Required !!</p>
-                </div>
-                <div>
-                    <div id="gender-box">
-                        <span class="label-text">Gender*:</span>
-                        <div>
-                            <input name="gender" value="male" id="male" type="radio" required>
-                            <label for="male">Male</label>
-                        </div>
-                        <div>
-                            <input name="gender" value="female" id="female" type="radio" required>
-                            <label for="female">Female</label>
-                        </div>
-                    </div>
-                    <p class="error-msg invisible">Gender is Required !!</p>
-                </div>
+          <div>
+            <div class="center" onclick="elementFloat(this)">
+              <label for="last-name" class="">Last Name</label>
+              <input
+                id="last-name"
+                name="last-name"
+                class="deactive-link"
+                type="text"
+                placeholder="Eg.Dohale"
+                oninput="nameChecker(this)"
+                onchange="capitalize(this)"
+              />
             </div>
+            <p class="error-msg invisible">Last Name is Required !!</p>
+          </div>
+        </div>
 
-
-            <!-- Email and Mobile Number -->
-            <h3 id="contact-heading" class="label-text">Contacts*</h3>
-            <div id="email-number-box">
-                <div>
-                    <div class="center">
-                        <label for="email" class="">Email</label>
-                        <input id="email" type="email" placeholder="Eg. jatindohale@gmail.com" class="deactive-link" >
-                    </div>
-                    <p class="error-msg invisible">Email is Required !!</p>
-                </div>
-                <div>
-                    <div class="center">
-                        <label for="mobile" class="">Mobile No.</label>
-                        <input id="mobile" type="number" placeholder="Eg. 908217XXXX" class="deactive-link" >
-                    </div>
-                    <p class="error-msg invisible">Number is Required !!</p>
-                </div>
+        <!-- Dob and Gender -->
+        <div id="dob-gender-box">
+          <div>
+            <div id="dob-box" onclick="elementFloat(this)">
+              <label for="dob" class="">Date of Birth</label>
+              <input
+                id="dob"
+                type="date"
+                class="deactive-link"
+                placeholder="Pick a Date"
+              />
             </div>
-
-            <!-- About me -->
-             <div id="about-box">
-                <div >
-                    <div>
-                        <label for="check-about" class="label-text">About Me</label>
-                        <input type="checkbox" id="check-about">
-                    </div>
-                    <div id="count-box" >
-                        <p class="hidden"><span id="char-count">0</span>/1024</p>
-                    </div>
-                </div>
-                <textarea type="text" name="about" id="about" class="hidden" placeholder="Write Here..." minlength="1" maxlength="1024"></textarea>
-             </div>
-
-             <!-- Submit Button -->
-              <div id="submit-cancel-button">
-                  <button type="submit" id="submit">
-                    Submit
-                  </button>
-                  <button type="button" id="cancel">
-                    Cancel
-                  </button>
+            <p class="error-msg invisible">Date of Birth is Required !!</p>
+          </div>
+          <div>
+            <div id="gender-box">
+              <span class="label-text">Gender*:</span>
+              <div>
+                <input
+                  name="gender"
+                  value="male"
+                  id="male"
+                  type="radio"
+                  required
+                />
+                <label for="male">Male</label>
               </div>
+              <div>
+                <input
+                  name="gender"
+                  value="female"
+                  id="female"
+                  type="radio"
+                  required
+                />
+                <label for="female">Female</label>
+              </div>
+            </div>
+            <p class="error-msg invisible">Gender is Required !!</p>
+          </div>
+        </div>
 
+        <!-- Email and Mobile Number -->
+        <h3 id="contact-heading" class="label-text">Contacts*</h3>
+        <div id="email-number-box">
+          <div>
+            <div class="center" onclick="elementFloat(this)">
+              <label for="email" class="">Email</label>
+              <input
+                id="email"
+                type="email"
+                class="deactive-link"
+                placeholder="Eg. jatindohale@gmail.com"
+                oninput="emailChecker(this)"
+              />
+            </div>
+            <p class="error-msg invisible">Email is Required !!</p>
+          </div>
+          <div>
+            <div class="center" onclick="elementFloat(this)">
+              <label for="mobile" class="">Mobile No.</label>
+              <input
+                id="mobile"
+                type="number"
+                class="deactive-link"
+                placeholder="Eg. 908217XXXX"
+                oninput="numberChecker(this)"
+              />
+            </div>
+            <p class="error-msg invisible">Number is Required !!</p>
+          </div>
+        </div>
 
+        <!-- About me -->
+        <div id="about-box">
+          <div>
+            <div>
+              <label for="check-about" class="label-text">About Me</label>
+              <input
+                type="checkbox"
+                id="check-about"
+                onclick="showAbout(this.checked)"
+              />
+            </div>
+            <div id="count-box">
+              <p class="hidden"><span id="char-count">0</span>/1024</p>
+            </div>
+          </div>
+          <textarea
+            type="text"
+            name="about"
+            id="about"
+            class="hidden"
+            placeholder="Write Here..."
+            minlength="1"
+            maxlength="1024"
+            oninput="textareaCounter(this)"
+          ></textarea>
+        </div>
 
-        </form>
+        <!-- Submit Button -->
+        <div id="submit-cancel-button">
+          <button type="submit" id="submit">Submit</button>
+          <button type="button" id="cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Table for showing student data  -->
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th rowspan="2" class="sr-no">Sr. No.</th>
+          <th colspan="3" class="name-col">Name</th>
+          <th colspan="2" class="contact-col">Contact</th>
+          <th colspan="3" class="other-col">Other</th>
+          <th rowspan="2" class="action-col">Actions</th>
+        </tr>
+        <tr id="sub-head-table">
+          <th
+            class="sorting name-sub-head"
+            data-direction="null"
+            data-element-name="firstName"
+          >
+            First
+          </th>
+          <th class="name-sub-head">Middle</th>
+          <th
+            class="sorting name-sub-head"
+            data-direction="null"
+            data-element-name="lastName"
+          >
+            Last
+          </th>
+          <th
+            class="sorting contact-sub-head"
+            data-direction="null"
+            data-element-name="email"
+          >
+            Email
+          </th>
+          <th
+            class="sorting contact-sub-head"
+            data-direction="null"
+            data-element-name="mobile"
+          >
+            Mobile No.
+          </th>
+          <th
+            class="sorting other-sub-head"
+            data-direction="null"
+            data-element-name="gender"
+          >
+            Gender
+          </th>
+          <th class="sorting" data-direction="null" data-element-name="dob">
+            Birth Date
+          </th>
+          <th class="about-sub-heading">About</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="pagination" class="">
+      <button id="prev-button" class="button" onclick="prevUpdate()">
+        Previous
+      </button>
+      <span class="button">0</span>
+      <button id="next-button" class="button" onclick="nextUpdate()">
+        Next
+      </button>
     </div>
     <script src="registration.js"></script>
-</body>
-
+  </body>
 </html>
