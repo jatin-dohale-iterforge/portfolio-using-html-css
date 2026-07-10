@@ -1,245 +1,188 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Dashboard</title>
-    <link rel="stylesheet" href="../utility.css" />
-    <link rel="stylesheet" href="../style/weather.css" />
-  </head>
 
-  <body>
-    <!-- Header -->
-    <header>
-      <div id="weather-search-box" class="center" oninput="">
-        <span class="center">
-          <svg
-            width="800px"
-            height="800px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </span>
-        <!-- <img src="../assets/weather_icons/search_icon.svg" alt=""> -->
-        <input id="weather-search" type="text" placeholder="Enter City.." />
-      </div>
-      <div>
-        <h1>Weather<span>Dashboard</span></h1>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="../utility.css" />
+  <link rel="stylesheet" href="../style/weather.css" />
+</head>
 
-    <main>
-      <div id="weather-main-box">
-        <!-- Box 1 -->
-        <div id="weather-box-one" class="center">
-          <div>
-            <div id="today-box">
-              <div id="today-box-heading">
-                <div id="location-holder" class="center">
-                  <span class="center">
-                    <svg
-                      fill="#ffffff"
-                      width="800px"
-                      height="800px"
-                      viewBox="0 0 32 32"
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z"
-                      ></path>
-                    </svg>
-                  </span>
-                  <h3 id="city">Mumbai</h3>
-                </div>
-                <div id="today">
-                  <h3>Monday</h3>
-                  <p>24 dec 2026</p>
-                </div>
-                <div id="temperature">
-                  <h3>26 C</h3>
-                  <p>
-                    High : <span id="high">26</span>low:
-                    <span id="low">10</span>
-                  </p>
-                </div>
-              </div>
-              <div id="today-icon-box">
-                <span>
-                  <svg
-                    width="800px"
-                    height="800px"
-                    viewBox="0 0 24 24"
-                    fill="white"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
+<body>
+  <!-- Header -->
+  <header>
+    <div id="weather-search-box" class="center" oninput="">
+      <span class="center" style="cursor: pointer;" onclick="getData(this.nextElementSibling.value)">
+        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </span>
+      <!-- <img src="../assets/weather_icons/search_icon.svg" alt=""> -->
+      <input id="weather-search" type="text" placeholder="Enter City.." />
+    </div>
+    <div>
+      <h1>Weather<span>Dashboard</span></h1>
+    </div>
+  </header>
+
+  <main>
+    <div id="weather-main-box">
+      <!-- Box 1 -->
+      <div id="weather-box-one" class="center">
+        <div>
+          <div id="today-box">
+            <div id="today-box-heading">
+              <div id="location-holder" class="center">
+                <span class="center">
+                  <svg fill="#ffffff" width="800px" height="800px" viewBox="0 0 32 32" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg">
                     <path
-                      opacity="0.5"
-                      d="M11.5 8C11.5 9.933 9.933 11.5 8 11.5C6.067 11.5 4.5 9.933 4.5 8C4.5 6.067 6.067 4.5 8 4.5C9.933 4.5 11.5 6.067 11.5 8Z"
-                      fill="orange"
-                    />
-                    <g opacity="0.5">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M7.5 1.25C7.91421 1.25 8.25 1.58579 8.25 2V2.5C8.25 2.91421 7.91421 3.25 7.5 3.25C7.08579 3.25 6.75 2.91421 6.75 2.5V2C6.75 1.58579 7.08579 1.25 7.5 1.25ZM3.08086 3.08059C3.37375 2.78769 3.84862 2.78769 4.14152 3.08059L4.35758 3.29665C4.65047 3.58954 4.65047 4.06441 4.35758 4.35731C4.06468 4.6502 3.58981 4.6502 3.29692 4.35731L3.08086 4.14125C2.78796 3.84835 2.78796 3.37348 3.08086 3.08059ZM11.919 3.08073C12.2119 3.37362 12.2119 3.8485 11.919 4.14139L11.7029 4.35745C11.41 4.65034 10.9352 4.65034 10.6423 4.35745C10.3494 4.06456 10.3494 3.58968 10.6423 3.29679L10.8583 3.08073C11.1512 2.78784 11.6261 2.78784 11.919 3.08073ZM1.25 7.5C1.25 7.08579 1.58579 6.75 2 6.75H2.5C2.91421 6.75 3.25 7.08579 3.25 7.5C3.25 7.91421 2.91421 8.25 2.5 8.25H2C1.58579 8.25 1.25 7.91421 1.25 7.5ZM4.35758 10.6427C4.65047 10.9356 4.65047 11.4105 4.35758 11.7034L4.14152 11.9194C3.84862 12.2123 3.37375 12.2123 3.08086 11.9194C2.78796 11.6265 2.78796 11.1516 3.08086 10.8588L3.29692 10.6427C3.58981 10.3498 4.06468 10.3498 4.35758 10.6427Z"
-                        fill="orange"
-                      />
-                    </g>
-                    <path
-                      d="M16.2857 22C19.4416 22 22 19.4717 22 16.3529C22 13.8811 20.393 11.7802 18.1551 11.015C17.8371 8.19371 15.4159 6 12.4762 6C9.32028 6 6.7619 8.52827 6.7619 11.6471C6.7619 12.3369 6.88706 12.9978 7.11616 13.6089C6.8475 13.5567 6.56983 13.5294 6.28571 13.5294C3.91878 13.5294 2 15.4256 2 17.7647C2 20.1038 3.91878 22 6.28571 22H16.2857Z"
-                      fill="white"
-                    />
+                      d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z">
+                    </path>
                   </svg>
                 </span>
-                <h3>Cloudy</h3>
-                <p>Feel like 26</p>
+                <h3 id="city">Mumbai</h3>
+              </div>
+              <div id="today">
+                <h3>Monday</h3>
+                <p>24 dec 2026</p>
+              </div>
+              <div id="temperature">
+                <h3>26 C</h3>
+                <p>
+                  High : <span id="high">26</span>low:
+                  <span id="low">10</span>
+                </p>
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Box 2 -->
-        <div id="weather-box-two">
-          <div id="today-highlight">
-            <h4>Today Highlights</h4>
-            <div>
-              <div id="sunrise">
-                <p>Sunrise</p>
-                <span>05:69</span>
-              </div>
-              <div id="sunset">
-                <p>sunset</p>
-                <span>18:59</span>
-              </div>
-              <div id="rain">
-                <p>Rain</p>
-                <span>1</span>
-              </div>
-              <div id="uv-index">
-                <p>Uv Index</p>
-                <span>6</span>
-              </div>
-            </div>
-          </div>
-
-          <div id="near-cities">
-            <h4>Near cities</h4>
-            <div>
-              <div>
-                <div>
-                  <p>Mumbai</p>
-                  <span>14</span>
-                </div>
-                <div>🌤️</div>
-              </div>
-              <div>
-                <div>
-                  <p>Mumbai</p>
-                  <span>14</span>
-                </div>
-                <div>🌤️</div>
-              </div>
-              <div>
-                <div>
-                  <p>Mumbai</p>
-                  <span>14</span>
-                </div>
-                <div>🌤️</div>
-              </div>
-              <div>
-                <div>
-                  <p>Mumbai</p>
-                  <span>14</span>
-                </div>
-                <div>🌤️</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Box3 -->
-        <div id="weather-box-three" class="center">
-          <div>
-            <div id="three-today-data">
-              <h4>Today</h4>
-              <div class="dayTemperature">
-                <div id="hourlyData">
-                  <div class="hourly-box">
-                    <p>1PM</p>
-                    <span>🌤️</span>
-                    <p>20</p>
-                  </div>
-                  <div class="hourly-box">
-                    <p>1PM</p>
-                    <span>🌤️</span>
-                    <p>20</p>
-                  </div>
-                  <div class="hourly-box">
-                    <p>1PM</p>
-                    <span>🌤️</span>
-                    <p>20</p>
-                  </div>
-                  <div class="hourly-box">
-                    <p>1PM</p>
-                    <span>🌤️</span>
-                    <p>20</p>
-                  </div>
-                  <div class="hourly-box">
-                    <p>1PM</p>
-                    <span>🌤️</span>
-                    <p>20</p>
-                  </div>
-                  <div class="hourly-box">
-                    <p>1PM</p>
-                    <span>🌤️</span>
-                    <p>20</p>
-                  </div>
-                  <div class="hourly-box">
-                    <p>1PM</p>
-                    <span>🌤️</span>
-                    <p>20</p>
-                  </div>
-                </div>
-              </div>
-              <div id="tomorrow-box">
-                <div>
-                  <h4>Tomorrow</h4>
-                  <p>Thunder storm</p>
-                </div>
-                <div>
-                  <span>14</span>
-                </div>
-                <div>
-                  <span> ⛈️ </span>
-                </div>
-              </div>
-            </div>
-
-            <div id="future-data">
-              <ul class="center">
-                <li>12-04-2004</li>
-                <li>12-04-2004</li>
-                <li>12-04-2004</li>
-                <li>12-04-2004</li>
-                <li>12-04-2004</li>
-                <li>12-04-2004</li>
-              </ul>
+            <div id="today-icon-box">
+              <span>
+                <img src="../assets/weather_icons/drizzle.png" alt="">
+              </span>
+              <h3>Cloudy</h3>
+              <p>Feel like 26</p>
             </div>
           </div>
         </div>
       </div>
-    </main>
-  </body>
 
-  <script src="../logic/weather.js"></script>
+      <!-- Box 2 -->
+      <div id="weather-box-two">
+        <div id="today-highlight">
+          <h4>Today Highlights</h4>
+          <div>
+            <div id="sunrise">
+              <p>SUNRISE</p>
+              <span></span>
+            </div>
+            <div id="sunset">
+              <p>SUNSET</p>
+              <span></span>
+            </div>
+            <div id="rain">
+              <p>RAIN</p>
+              <span></span>
+            </div>
+            <div id="uv-index">
+              <p>UV INDEX</p>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <div id="near-cities">
+          <h4>Near cities</h4>
+          <div>
+            <div>
+              <div>
+                <p>Mumbai</p>
+                <span>14</span>
+              </div>
+              <div>🌤️</div>
+            </div>
+            <div>
+              <div>
+                <p>Mumbai</p>
+                <span>14</span>
+              </div>
+              <div>🌤️</div>
+            </div>
+            <div>
+              <div>
+                <p>Mumbai</p>
+                <span>14</span>
+              </div>
+              <div>🌤️</div>
+            </div>
+            <div>
+              <div>
+                <p>Mumbai</p>
+                <span>14</span>
+              </div>
+              <div>🌤️</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Box3 -->
+      <div id="weather-box-three" class="center">
+        <div>
+          <div id="three-today-data">
+            <h4>Today</h4>
+            <div class="dayTemperature">
+              <div id="hourlyData">
+              </div>
+            </div>
+            <div id="tomorrow-box">
+              <div>
+                <h4>Tomorrow</h4>
+                <p>Thunder storm</p>
+              </div>
+              <div>
+                <span>14</span>
+              </div>
+              <div>
+                <span> ⛈️ </span>
+              </div>
+            </div>
+          </div>
+
+          <div id="future-data">
+            <ul class="center">
+            </ul>
+          </div>
+
+          <div id="overlay-data" class="hidden">
+            <h4 >2004-04-12</h4>
+            <div class="dayTemperature">
+              <div id="overlay-hourlyData">
+              </div>
+              <div id="go-today-button" onclick="offOverlayData()">
+              <div>
+                <h4>Today</h4>
+                <p>See Today Weather</p>
+              </div>
+              <div>
+                <span>28</span>
+              </div>
+              <div>
+                <span><img src="" alt=""></span>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div id="loader" class="center2"></div>
+</body>
+
+
+<script src="../logic/weather.js"></script>
+
 </html>
