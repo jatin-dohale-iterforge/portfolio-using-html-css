@@ -1,3 +1,126 @@
+// ------------------//
+// Indexed Db Logic //
+//-----------------//
+let db;
+const indexRequest = indexedDB.open("studentdb", 1);
+
+indexRequest.onerror = (e) => {
+  alert("Something not right Try again later");
+  console.log(e.target.error);
+};
+
+indexRequest.onupgradeneeded = (e) => {
+  console.log("Database Upgraded");
+
+  db = e.target.result;
+
+  if (!db.objectStoreNames.contains("student")) {
+    const store = db.createObjectStore("student", {
+      keyPath: "id",
+      autoIncrement: true,
+    });
+    store.createIndex("firstName", "firstName", { unique: false });
+    store.createIndex("middleName", "middleName", { unique: false });
+    store.createIndex("lastName", "lastName", { unique: false });
+    store.createIndex("email", "email", { unique: false });
+    store.createIndex("mobile", "mobile", { unique: false });
+    store.createIndex("dob", "dob", { unique: false });
+    store.createIndex("gender", "gender", { unique: false });
+    store.createIndex("about", "about", { unique: false });
+  }
+};
+
+indexRequest.onsuccess = async (e) => {
+  console.log("Database Connected Successfully");
+  db = e.target.result;
+  await getStudentsList();
+};
+
+// function for adding Student Data
+const addStudent = (item) => {
+  let transaction = db.transaction("student", "readwrite");
+  const store = transaction.objectStore("student");
+
+  const request = store?.add({
+    firstName: item.firstName,
+    middleName: item.middleName,
+    lastName: item.lastName,
+    email: item.email,
+    mobile: item.mobile,
+    dob: item.dob,
+    gender: item.gender,
+    about: item.about,
+  });
+  request.onsuccess = (e) => {
+    alert("Student Data Added Successfully");
+  };
+  request.onerror = (e) => {
+    alert("Something not right Try again later");
+    console.log(e.target.error);
+  };
+};
+
+// function for getting  all Students Data
+const getStudentsList = async () => {
+  let transaction = db.transaction("student", "readonly");
+  const store = transaction.objectStore("student");
+
+  const request = await store.getAll();
+
+  request.onsuccess = (e) => {
+    studentList = e.target.result;
+    displayStudent(currentPage);
+  };
+  request.onerror = (e) => {
+    alert("Something not right Try again later");
+    console.log(e.target.error);
+  };
+};
+
+// function for update student data
+const updateStudent = async (item) => {
+  let transaction = db.transaction("student", "readwrite");
+  const store = transaction.objectStore("student");
+  const request = store?.put({
+    id:item.id,
+    firstName: item.firstName,
+    middleName: item.middleName,
+    lastName: item.lastName,
+    email: item.email,
+    mobile: item.mobile,
+    dob: item.dob,
+    gender: item.gender,
+    about: item.about,
+  });
+
+  request.onsuccess = (e) => {
+    getStudentsList();
+  };
+  request.onerror = (e) => {
+    alert("Something not right Try again later");
+    console.log(e.target.error);
+  };
+};
+
+// function for delete data
+const deleteStudentDb = async (id) => {
+  let transaction = db.transaction("student", "readwrite");
+  const store = transaction.objectStore("student");
+  const request = store?.delete(id)
+
+  request.onsuccess = (e) => {
+    getStudentsList();
+  };
+  request.onerror = (e) => {
+    alert("Something not right Try again later");
+    console.log(e.target.error);
+  };
+};
+
+// ------------------//
+// Basic Logics     //
+//-----------------//
+
 // get Gender
 const getGender = () => {
   let result;
@@ -54,9 +177,7 @@ const displayStudent = (page) => {
 };
 
 // variables
-let studentList = localStorage.getItem("studentList")
-  ? JSON.parse(localStorage.getItem("studentList"))
-  : [];
+let studentList;
 const tableBody = document.querySelector("tbody");
 const formBox = document.getElementById("form-box");
 const dataTable = document.getElementById("data-table");
@@ -72,8 +193,6 @@ let currentPage = 1;
 const studentPerPage = 5;
 const prev = document.getElementById("prev-button");
 const next = document.getElementById("next-button");
-
-displayStudent(currentPage);
 
 // ==========================//
 //      Form Logics         //
@@ -107,10 +226,10 @@ const capitalize = (ele) => {
 
 // function for name validation
 const nameChecker = (ele) => {
-  const text = ele.name.replace("-", " ");
+  const text = ele.name.charAt(0).toUpperCase() + ele.name.slice(1);
   const isName = /^[A-Za-z]+$/.test(ele.value);
   if (ele.value.length == 0) {
-    ele.parentElement.nextElementSibling.innerText = `${capitalize(text)} is Required`;
+    ele.parentElement.nextElementSibling.innerText = `${text.replace("-", " ")} is Required`;
     ele.parentElement.nextElementSibling.classList.remove("invisible");
     formOkay = false;
     return;
@@ -231,7 +350,7 @@ const resetForm = () => {
 };
 
 // function for form submission
-const handleSubmit = (event) => {
+const handleSubmit = async (event) => {
   event.preventDefault();
 
   floatingInputs.forEach((ele) => {
@@ -246,22 +365,22 @@ const handleSubmit = (event) => {
     if (edit) {
       studentList.find((item) => {
         if (item.id == currentId) {
-          item.firstName = firstName.value;
-          item.middleName = middleName.value;
-          item.lastName = lastName.value;
-          item.gender = getGender();
-          item.email = email.value;
-          item.mobile = mobile.value;
-          item.dob = dob.value;
-          item.about = about.value;
+          const updateStudentData = {
+            id:currentId,
+            firstName: firstName.value,
+            middleName: middleName.value,
+            lastName: lastName.value,
+            gender: getGender(),
+            email: email.value,
+            mobile: mobile.value,
+            dob: dob.value,
+            about: about.value ? about.value : "No Response Added",
+          };
+          updateStudent(updateStudentData);
         }
       });
     } else {
-      studentList.push({
-        id:
-          studentList.length >= 1
-            ? studentList[studentList.length - 1].id + 1
-            : 1,
+      let newStudent = {
         firstName: firstName.value,
         middleName: middleName.value,
         lastName: lastName.value,
@@ -269,10 +388,12 @@ const handleSubmit = (event) => {
         email: email.value,
         mobile: mobile.value,
         dob: dob.value,
-        about: about.value,
-      });
+        about: about.value ? about.value : "No Response Added",
+      };
+      addStudent(newStudent);
+      getStudentsList();
     }
-    localStorage.setItem("studentList", JSON.stringify(studentList));
+    // studentList = ;
     resetForm();
     closeStudentForm();
   }
@@ -286,13 +407,10 @@ cancelButton.addEventListener("click", (e) => {
   closeStudentForm();
 });
 
-
-
 // ==========================//
 //      Table Logics         //
 //==========================//
 const addButton = document.getElementById("add-button");
-
 
 // function for opening Form
 const openStudentForm = () => {
@@ -317,10 +435,9 @@ const closeStudentForm = () => {
   setStudentListing(studentList);
 };
 
-
 // function for edit button
 const editStudent = (id) => {
-  studentList.find((item) => {
+  studentList.find(async(item) => {
     if (item.id == id) {
       openStudentForm();
       edit = true;
@@ -337,9 +454,9 @@ const editStudent = (id) => {
         }
       });
 
-      floatingInputs.forEach((ele)=>{
+      floatingInputs.forEach((ele) => {
         elementFloat(ele);
-      })
+      });
     }
   });
 };
@@ -348,9 +465,7 @@ const editStudent = (id) => {
 const deleteStudent = (id) => {
   let result = confirm("You Want to delete this Entry");
   if (result) {
-    studentList = studentList.filter((item) => item.id !== id);
-    localStorage.setItem("studentList", JSON.stringify(studentList));
-    setStudentListing(studentList);
+    deleteStudentDb(id)
   }
 };
 
@@ -380,7 +495,6 @@ tableTh.forEach((th) => {
       e.target.innerText = e.target.innerText.split(" ")[0] + " ⇧";
     } else if (e.target.dataset.direction == "des") {
       studentList = studentList.sort((a, b) => a.id - b.id);
-      localStorage.setItem("studentList", JSON.stringify(studentList));
       e.target.dataset.direction = "null";
       e.target.innerText = e.target.innerText.split(" ")[0];
     }
@@ -391,7 +505,7 @@ tableTh.forEach((th) => {
 
 // Searching Logic
 const searchFilter = (str) => {
-    str = str.toLowerCase();
+  str = str.toLowerCase();
   if (str == "") {
     setStudentListing(studentList);
   } else {
@@ -409,4 +523,3 @@ const searchFilter = (str) => {
 };
 
 const searchBox = document.getElementById("search-box");
-
