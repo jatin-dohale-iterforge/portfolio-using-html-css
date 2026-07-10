@@ -1,0 +1,63 @@
+:root {
+  --pr-color: #1a2238;
+  --sc-color: #9daaf2;
+  --tr-color: #f4db7d;
+  --txt-color: #e7ebf9;
+  --txt-sc-color: #ff6a3d;
+  --ft-size:16px;
+}
+
+body {
+  color: var(--txt-color);
+  background-color: var(--pr-color);
+}
+
+
+
+/* Header Styling */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 1rem;
+}
+
+#weather-search-box {
+  background-color: var(--txt-color);
+  color: var(--pr-color);
+  padding: 0.25rem 0.75rem 0.25rem 0.15rem;
+  border-radius: 1rem;
+  justify-content: space-around;
+}
+
+#weather-search-box input {
+  border: none;
+  outline:none;
+  background-color: transparent;
+  margin-left: 8px;
+  width: 40vw;
+}
+
+header h1 {
+  font-size:calc(var(--ft-size)*2) ;
+}
+header h1>span {
+  color: var(--txt-sc-color);
+}
+
+header span{
+  width: 20px;
+  height: 20px;
+  background-color: var(--pr-color);
+  border-radius: 1rem ;
+  padding: 4px;
+}
+
+header svg{
+  width: 100%;
+  height: 100%;
+
+  color: var(--txt-color);
+}
+

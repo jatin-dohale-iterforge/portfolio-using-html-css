@@ -171,6 +171,10 @@ body {
   gap: 1rem;
 }
 
+.card-item > a{
+  color: inherit;
+  
+}
 
 
 /* skill section styling */
