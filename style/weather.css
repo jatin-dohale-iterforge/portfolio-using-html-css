@@ -44,7 +44,7 @@ header h1 {
   font-size: calc(var(--ft-size) * 2);
 }
 
-header h1>span {
+header h1 > span {
   color: var(--txt-sc-color);
 }
 
@@ -83,8 +83,8 @@ main {
   position: relative;
 }
 
-#weather-box-one>div,
-#weather-box-three>div {
+#weather-box-one > div,
+#weather-box-three > div {
   display: flex;
   flex-direction: column;
   width: 70%;
@@ -138,7 +138,7 @@ main {
   margin-left: 1rem;
 }
 
-#today-box-heading>div {
+#today-box-heading > div {
   margin-bottom: 1rem;
 }
 
@@ -156,7 +156,7 @@ main {
   margin-right: 1rem;
 }
 
-#today-icon-box>span {
+#today-icon-box > span {
   width: fit-content;
   height: fit-content;
   background-color: transparent;
@@ -173,14 +173,14 @@ main {
 }
 
 /* weather box 3 styling */
-#weather-box-three>div {
+#weather-box-three > div {
   width: 90%;
   display: flex;
   flex-direction: row;
   gap: 5%;
 }
 
-#weather-box-three>div {
+#weather-box-three > div {
   width: 90%;
   display: flex;
   flex-direction: row;
@@ -190,7 +190,8 @@ main {
   width: 100%;
 }
 
-#hourlyData,#overlay-hourlyData {
+#hourlyData,
+#overlay-hourlyData {
   display: flex;
   gap: 6px;
   margin-top: 0.75rem;
@@ -232,8 +233,8 @@ main {
   border-radius: 1rem;
   padding-left: 1rem;
   padding-block: 0.25rem;
-      justify-content: space-between;
-    padding-inline: 1.5rem;
+  justify-content: space-between;
+  padding-inline: 1.5rem;
 }
 
 #tomorrow-box h4,
@@ -243,23 +244,23 @@ main {
 }
 
 .tomorrow-temperature p,
-.overlay-hourlyData-temperature p{
+.overlay-hourlyData-temperature p {
   font-size: calc(var(--ft-size) * 2);
 }
 
-#tomorrow-box>div>span
-#go-today-button>div>span {
+#tomorrow-box > div > span #go-today-button > div > span {
   width: 30%;
   height: 100%;
   font-size: calc(var(--ft-size) * 2.5);
 }
+
 #tomorrow-img,
-#go-today-button>div img {
- width: 40px;
- height: 40px;
+#go-today-button > div img {
+  width: 40px;
+  height: 40px;
 }
 
-#three-today-data{
+#three-today-data {
   width: 70%;
 }
 
@@ -298,8 +299,8 @@ main {
   padding: 1rem;
 }
 
-#today-highlight>div,
-#near-cities>div {
+#today-highlight > div,
+#near-cities > div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -309,7 +310,7 @@ main {
   justify-items: center;
 }
 
-#today-highlight>div>div {
+#today-highlight > div > div {
   position: relative;
   background-color: var(--pr-color);
   width: 70%;
@@ -322,12 +323,12 @@ main {
   font-size: 20px;
 }
 
-#today-highlight>div>div>span {
+#today-highlight > div > div > span {
   color: var(--txt-sc-color);
   font-size: 30px;
 }
 
-#today-highlight>div>div>p {
+#today-highlight > div > div > p {
   background-color: var(--pr-color);
   position: absolute;
   top: -8px;
@@ -336,7 +337,7 @@ main {
   border-radius: 0.5rem;
 }
 
-#near-cities>div>div {
+#near-cities > div > div {
   background-color: var(--pr-color);
   width: 70%;
   height: 70%;
@@ -346,19 +347,17 @@ main {
   justify-content: center;
 }
 
-#near-cities>div>div span {
+#near-cities > div > div span {
   font-size: 30px;
 }
 
 /* overlay data */
-#overlay-data{
+#overlay-data {
   width: 60%;
   height: 70%;
   position: absolute;
   background-color: var(--pr-light-color);
-
 }
-
 
 /* loader */
 #loader {
@@ -385,6 +384,74 @@ main {
   }
 }
 
-.hidden{
+.hidden {
   display: none;
+}
+
+@media screen and (max-width: 991px) {
+  #weather-main-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #weather-box-one,
+  #weather-box-three {
+    width: auto;
+    height: auto;
+  }
+  #weather-box-one > div,
+  #weather-box-three > div {
+    height: auto;
+    margin-top: 1rem;
+  }
+
+  #weather-box-two {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+   #near-cities{
+    height: auto;
+   }
+
+   #today-highlight > div,
+    #near-cities > div{
+    gap: 15px;
+   }
+
+
+
+  #today-highlight > div > div{
+    height: 120%;
+  }
+  #near-cities > div > div {
+    height: 100%;
+}
+}
+
+
+@media screen and (max-width: 767px){
+  header{
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+  #weather-box-one > div{
+    width: 90%;
+  }
+  #tomorrow-box h4, #go-today-button h4{
+    font-size: var(--ft-size);
+  }
+  #tomorrow-box p,#go-today-button p{
+font-size: 12px;
+  }
+  .tomorrow-temperature p, .overlay-hourlyData-temperature p {
+    font-size: 16px;
+  }
+  #tomorrow-img, #go-today-button > div img {
+    width: 20px;
+    height: 20px;
+  }
+  #future-data li{
+    font-size: 12px;
+  }
 }
