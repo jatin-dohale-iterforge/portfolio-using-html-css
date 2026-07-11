@@ -232,11 +232,19 @@ main {
   border-radius: 1rem;
   padding-left: 1rem;
   padding-block: 0.25rem;
+      justify-content: space-between;
+    padding-inline: 1.5rem;
 }
 
 #tomorrow-box h4,
 #go-today-button h4 {
   font-size: calc(var(--ft-size) * 1.5);
+  color: var(--txt-sc-color);
+}
+
+.tomorrow-temperature p,
+.overlay-hourlyData-temperature p{
+  font-size: calc(var(--ft-size) * 2);
 }
 
 #tomorrow-box>div>span
@@ -244,6 +252,11 @@ main {
   width: 30%;
   height: 100%;
   font-size: calc(var(--ft-size) * 2.5);
+}
+#tomorrow-img,
+#go-today-button>div img {
+ width: 40px;
+ height: 40px;
 }
 
 #three-today-data{

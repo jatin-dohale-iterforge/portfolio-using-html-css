@@ -71,32 +71,45 @@ const getWeatherCode = (code) => {
 const getData = async (city = "mumbai") => {
     newCity = city.toLowerCase();
 
-    document.querySelector("main").style.visibility = "hidden";
-    document.querySelector("#loader").style.visibility = "visible";
+    //   document.querySelector("main").classList.add("hidden");
+    //   document.querySelector("#loader").style.visibility = "visible";
 
-    try {
-        const response = await fetch(
-            `https://geocoding-api.open-meteo.com/v1/search?name=${newCity}&count=1`,
-        );
+    if (sessionStorage.getItem(city)) {
+        storageData = JSON.parse(sessionStorage.getItem(city));
 
-        if (!response.ok) {
-            throw new Error(`HTTP Error: ${response.status}`);
+        cityWeatherData.length = 0;
+        specificDayData.length = 0;
+        
+        cityWeatherData.push(storageData[0]);
+        cityWeatherData.push(storageData[1]);
+        specificDayData.push(storageData[0]);
+        specificDayData.push(storageData[2]);
+        showData(cityWeatherData);
+    } else {
+        try {
+            const response = await fetch(
+                `https://geocoding-api.open-meteo.com/v1/search?name=${newCity}&count=1`,
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (!data.results) {
+                console.log("sdcd");
+                alert("Enter Valid city name");
+                getData();
+            }
+
+            getWeatherData(data.results[0]);
+            getSpecificDayData(data.results[0]);
+        } catch (error) {
+            console.error("Fetch error:", error.message);
+            document.querySelector("#loader").style.display = "none";
+            document.querySelector("main").classList.remove("hidden");
         }
-
-        const data = await response.json();
-
-        if(!data.results){
-            console.log("sdcd")
-            alert("Enter Valid city name")
-            getData()
-        }
-
-        getWeatherData(data.results[0]);
-        getSpecificDayData(data.results[0]);
-    } catch (error) {
-        console.error("Fetch error:", error.message);
-        document.querySelector("#loader").style.display = "none";
-        document.querySelector("main").style.visibility = "visible";
     }
 };
 
@@ -121,7 +134,7 @@ const getWeatherData = async (data) => {
     } catch (error) {
         console.error("Fetch error:", error.message);
         document.querySelector("#loader").style.display = "none";
-        document.querySelector("main").style.visibility = "visible";
+        document.querySelector("main").classList.remove("hidden");
     }
 };
 
@@ -146,7 +159,7 @@ const getSpecificDayData = async (data) => {
     } catch (error) {
         console.error("Fetch error:", error.message);
         document.querySelector("#loader").style.display = "none";
-        document.querySelector("main").style.visibility = "visible";
+        document.querySelector("main").classList.remove("hidden");
     }
 };
 
@@ -161,8 +174,6 @@ const showData = (cityWeatherData) => {
         .split(".")[0]
         .replace("_", " ");
 
-    console.log(cityWeatherData);
-
     //Box 1 display
     city.innerText = cityWeatherData[0].name;
     today.children[0].innerText = getFullDay(cityWeatherData[1].daily.time[0]);
@@ -176,6 +187,8 @@ const showData = (cityWeatherData) => {
     boxOneIcon.src = getWeatherCode(code);
     boxOneWeather.innerText = weather.charAt(0).toUpperCase() + weather.slice(1);
 
+    console.log(cityWeatherData);
+
     //box 2 display
     hourlyData.innerHTML = "";
     for (let index = getCurrentTime(); index < 25; index++) {
@@ -187,10 +200,24 @@ const showData = (cityWeatherData) => {
 
     futureData.innerHTML = "";
 
-    const hourInDay = 24
+    const hourInDay = 24;
     for (let index = 0; index < dateArray.length; index++) {
-        futureData.innerHTML += `<li data-hour="${hourInDay*(index+1)}"  onclick="showOverlayData(this)">${dateArray[index]}</li>`;
+        futureData.innerHTML += `<li data-hour="${hourInDay * (index + 1)}"  onclick="showOverlayData(this)">${dateArray[index]}</li>`;
     }
+
+    const weatherTomorrow = getWeatherCode(cityWeatherData[1].daily.weathercode[1])
+        .split("/")[3]
+        .split(".")[0]
+        .replace("_", " ");
+
+    tomorrowBox[0].children[1].innerText = weatherTomorrow.charAt(0).toUpperCase() + weatherTomorrow.slice(1);
+    tomorrowBox[1].children[0].innerText = cityWeatherData[1].daily.temperature_2m_max[1] + "°C";
+    tomorrowBox[2].children[0].children[0].src = getWeatherCode(cityWeatherData[1].daily.weathercode[1]);
+
+    
+    overlayBox[0].children[1].innerText = weather.charAt(0).toUpperCase() + weather.slice(1);
+    overlayBox[1].children[0].innerText = cityWeatherData[1].daily.temperature_2m_max[0] + "°C";
+    overlayBox[2].children[0].children[0].src = getWeatherCode(cityWeatherData[1].daily.weathercode[1]);
 
 
     //box 3 display
@@ -199,8 +226,23 @@ const showData = (cityWeatherData) => {
     rain.innerText = Math.round(daily.rain_sum[0]) + " mm";
     uvIndex.innerText = Math.round(daily.uv_index_max[0]);
 
+
     document.querySelector("#loader").style.display = "none";
-    document.querySelector("main").style.visibility = "visible";
+    document.querySelector("main").classList.remove("hidden");
+
+    if (!sessionStorage.getItem(cityWeatherData[0].name.toLowerCase())) {
+        const storageData = [];
+        storageData.push(cityWeatherData[0]);
+        storageData.push(cityWeatherData[1]);
+        storageData.push(specificDayData[1]);
+            if (storageData) {
+                sessionStorage.setItem(
+                    storageData[0].name.toLowerCase(),
+                    JSON.stringify(storageData),
+                );
+            }
+    }
+    loading = true;
 };
 
 let loading = false;
@@ -214,6 +256,14 @@ const high = document.getElementById("high");
 const low = document.getElementById("low");
 const boxOneIcon = document.querySelector("#today-icon-box>span>img");
 const boxOneWeather = document.querySelector("#today-icon-box>h3");
+const hourlyData = document.getElementById("hourlyData");
+const futureData = document.querySelector("#future-data>ul");
+const sunrise = document.querySelector("#sunrise span");
+const sunset = document.querySelector("#sunset span");
+const rain = document.querySelector("#rain span");
+const uvIndex = document.querySelector("#uv-index span");
+const tomorrowBox = document.querySelectorAll("#tomorrow-box>div")
+const overlayBox = document.querySelectorAll("#go-today-button > div")
 
 getData();
 
@@ -231,48 +281,42 @@ searchBox.addEventListener("keydown", (event) => {
 // ----------------------//
 // weather box 3 Data   //
 //---------------------//
-const sunrise = document.querySelector("#sunrise span");
-const sunset = document.querySelector("#sunset span");
-const rain = document.querySelector("#rain span");
-const uvIndex = document.querySelector("#uv-index span");
 
 // ----------------------//
 // weather box 3 Data   //
 //---------------------//
-const hourlyData = document.getElementById("hourlyData");
-const futureData = document.querySelector("#future-data>ul");
 
 document.onreadystatechange = function () {
     if (!loading) {
-        document.querySelector("main").style.visibility = "hidden";
+        document.querySelector("main").classList.add("hidden");
         document.querySelector("#loader").style.visibility = "visible";
     } else {
         document.querySelector("#loader").style.display = "none";
-        document.querySelector("main").style.visibility = "visible";
+        document.querySelector("main").classList.remove("hidden");
     }
 };
 
 // function for overlay
 const overlayData = document.getElementById("overlay-data");
-const showOverlayData = (event) =>{
-    const hourly = specificDayData[1].hourly;
+const showOverlayData = async (event) => {
+    const hourly = await specificDayData[1].hourly;
     overlayData.classList.remove("hidden");
     overlayData.children[0].innerHTML = event.innerText;
     overlayData.children[1].children[0].innerHTML = "";
 
-    for (let index = event.dataset.hour; index < parseInt(event.dataset.hour) + 24; index++) {
-        console.log(index)
-        overlayData.children[1].children[0].innerHTML +=`<div class="hourly-box"> <p>${index - event.dataset.hour + ":00"}</p>
+    for (
+        let index = event.dataset.hour;
+        index < parseInt(event.dataset.hour) + 24;
+        index++
+    ) {
+        console.log(index);
+        overlayData.children[1].children[0].innerHTML += `<div class="hourly-box"> <p>${index - event.dataset.hour + ":00"}</p>
                     <img src="${getWeatherCode(hourly.weathercode[index])}"></img>
                     <p>${Math.ceil(hourly.temperature_2m_max[index]) + "°C"}</p>
                   </div>`;
     }
-    
-}
+};
 
-
-const offOverlayData =()=>{
+const offOverlayData = () => {
     overlayData.classList.add("hidden");
-}
-
-
+};
