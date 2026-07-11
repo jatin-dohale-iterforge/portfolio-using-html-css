@@ -67,19 +67,48 @@ const getWeatherCode = (code) => {
     }
 };
 
+// function for current address
+const getCurrentLocation = () => {
+    return new Promise((resolve,reject)=>{
+        navigator.geolocation.getCurrentPosition(resolve,reject)
+    }) 
+}
+
+// function for reverse geolocation 
+const getCurrentCity = async() =>{
+  const result = await getCurrentLocation();
+  console.log(result.coords.latitude,result.coords.longitude)
+
+   try {
+            const response = await fetch(
+                `https://nominatim.openstreetmap.org/reverse?lat=${result.coords.latitude}&lon=${result.coords.longitude}&format=jsonv2`,
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            return data.address.town.toLowerCase();
+        }catch(e){
+            console.error("Fetch error:", error.message);
+        }
+}
+
+
 // Function for let Latitude and Longitude
 const getData = async (city = "mumbai") => {
     newCity = city.toLowerCase();
-
-    //   document.querySelector("main").classList.add("hidden");
-    //   document.querySelector("#loader").style.visibility = "visible";
+    document.querySelector("main").classList.add("hidden");
+    document.querySelector("#loader").style.visibility = "visible";
 
     if (sessionStorage.getItem(city)) {
         storageData = JSON.parse(sessionStorage.getItem(city));
 
         cityWeatherData.length = 0;
         specificDayData.length = 0;
-        
+
         cityWeatherData.push(storageData[0]);
         cityWeatherData.push(storageData[1]);
         specificDayData.push(storageData[0]);
@@ -103,8 +132,8 @@ const getData = async (city = "mumbai") => {
                 getData();
             }
 
+            await getSpecificDayData(data.results[0]);
             getWeatherData(data.results[0]);
-            getSpecificDayData(data.results[0]);
         } catch (error) {
             console.error("Fetch error:", error.message);
             document.querySelector("#loader").style.display = "none";
@@ -164,8 +193,8 @@ const getSpecificDayData = async (data) => {
 };
 
 // function for loaded values in ui
-const showData = (cityWeatherData) => {
-    const hourly = specificDayData[1].hourly;
+const showData = async(cityWeatherData) => {
+    const hourly = await specificDayData[1].hourly;
     const daily = cityWeatherData[1].daily;
     const dateArray = cityWeatherData[1].daily.time.slice(1);
     const code = cityWeatherData[1].current_weather.weathercode;
@@ -214,7 +243,7 @@ const showData = (cityWeatherData) => {
     tomorrowBox[1].children[0].innerText = cityWeatherData[1].daily.temperature_2m_max[1] + "°C";
     tomorrowBox[2].children[0].children[0].src = getWeatherCode(cityWeatherData[1].daily.weathercode[1]);
 
-    
+
     overlayBox[0].children[1].innerText = weather.charAt(0).toUpperCase() + weather.slice(1);
     overlayBox[1].children[0].innerText = cityWeatherData[1].daily.temperature_2m_max[0] + "°C";
     overlayBox[2].children[0].children[0].src = getWeatherCode(cityWeatherData[1].daily.weathercode[1]);
@@ -235,12 +264,12 @@ const showData = (cityWeatherData) => {
         storageData.push(cityWeatherData[0]);
         storageData.push(cityWeatherData[1]);
         storageData.push(specificDayData[1]);
-            if (storageData) {
-                sessionStorage.setItem(
-                    storageData[0].name.toLowerCase(),
-                    JSON.stringify(storageData),
-                );
-            }
+        if (storageData) {
+            sessionStorage.setItem(
+                storageData[0].name.toLowerCase(),
+                JSON.stringify(storageData),
+            );
+        }
     }
     loading = true;
 };
@@ -265,7 +294,21 @@ const uvIndex = document.querySelector("#uv-index span");
 const tomorrowBox = document.querySelectorAll("#tomorrow-box>div")
 const overlayBox = document.querySelectorAll("#go-today-button > div")
 
-getData();
+
+const main = async() =>{
+    let result = confirm("Current Location")
+    if(result){
+        let city = await getCurrentCity();
+        getData(city);
+    }else{
+        getData();
+    }
+
+}
+
+main()//main function 
+
+
 
 // ----------------------//
 // search Functionality //

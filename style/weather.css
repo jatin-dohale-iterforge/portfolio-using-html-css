@@ -416,17 +416,12 @@ main {
 
    #today-highlight > div,
     #near-cities > div{
-    gap: 15px;
+    height: 175px;
    }
 
 
 
-  #today-highlight > div > div{
-    height: 120%;
-  }
-  #near-cities > div > div {
-    height: 100%;
-}
+
 }
 
 
@@ -435,6 +430,16 @@ main {
     flex-direction: column-reverse;
     gap: 12px;
   }
+
+  #today-box h3 {
+    font-size: 20px;
+  }
+
+  #today-highlight > div > div > span {
+
+    font-size: 20px;
+}
+
   #weather-box-one > div{
     width: 90%;
   }
@@ -452,6 +457,9 @@ font-size: 12px;
     height: 20px;
   }
   #future-data li{
+    font-size: 12px;
+  }
+  #today-highlight > div > div > p {
     font-size: 12px;
   }
 }
