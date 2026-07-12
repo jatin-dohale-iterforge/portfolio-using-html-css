@@ -1,190 +1,254 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="../utility.css" />
+    <link rel="stylesheet" href="../style/weather.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weather Dashboard</title>
-  <link rel="stylesheet" href="../utility.css" />
-  <link rel="stylesheet" href="../style/weather.css" />
-</head>
-
-<body>
-  <!-- Header -->
-  <header>
-    <div id="weather-search-box" class="center" oninput="">
-      <span class="center" style="cursor: pointer;" onclick="getData(this.nextElementSibling.value)">
-        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </span>
-      <!-- <img src="../assets/weather_icons/search_icon.svg" alt=""> -->
-      <input id="weather-search" type="text" placeholder="Enter City.." />
-    </div>
-    <div>
-      <h1>Weather<span>Dashboard</span></h1>
-    </div>
-  </header>
-
-  <main>
-    <div id="weather-main-box">
-      <!-- Box 1 -->
-      <div id="weather-box-one" class="center">
-        <div>
-          <div id="today-box">
-            <div id="today-box-heading">
-              <div id="location-holder" class="center">
-                <span class="center">
-                  <svg fill="#ffffff" width="800px" height="800px" viewBox="0 0 32 32" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z">
-                    </path>
-                  </svg>
-                </span>
-                <h3 id="city">Mumbai</h3>
-              </div>
-              <div id="today">
-                <h3>Monday</h3>
-                <p>24 dec 2026</p>
-              </div>
-              <div id="temperature">
-                <h3>26 C</h3>
-                <p>
-                  High : <span id="high">26</span>low:
-                  <span id="low">10</span>
-                </p>
-              </div>
-            </div>
-            <div id="today-icon-box">
-              <span>
-                <img src="../assets/weather_icons/drizzle.png" alt="">
-              </span>
-              <h3>Cloudy</h3>
-              <p>Feel like 26</p>
-            </div>
-          </div>
-        </div>
+  <body>
+    <!-- Header -->
+    <header>
+      <div id="weather-search-box" class="center" oninput="">
+        <span
+          class="center"
+          style="cursor: pointer"
+          onclick="getData(this.nextElementSibling.value)"
+        >
+          <svg
+            width="800px"
+            height="800px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <!-- <img src="../assets/weather_icons/search_icon.svg" alt=""> -->
+        <input id="weather-search" type="text" placeholder="Enter City.." />
       </div>
-
-      <!-- Box 2 -->
-      <div id="weather-box-two">
-        <div id="today-highlight">
-          <h4>Today Highlights</h4>
-          <div>
-            <div id="sunrise">
-              <p>SUNRISE</p>
-              <span></span>
-            </div>
-            <div id="sunset">
-              <p>SUNSET</p>
-              <span></span>
-            </div>
-            <div id="rain">
-              <p>RAIN</p>
-              <span></span>
-            </div>
-            <div id="uv-index">
-              <p>UV INDEX</p>
-              <span></span>
-            </div>
-          </div>
-        </div>
-
-        <div id="near-cities">
-          <h4>Near cities</h4>
-          <div>
-            <div>
-              <div>
-                <p>Mumbai</p>
-                <span>14</span>
-              </div>
-              <div>🌤️</div>
-            </div>
-            <div>
-              <div>
-                <p>Mumbai</p>
-                <span>14</span>
-              </div>
-              <div>🌤️</div>
-            </div>
-            <div>
-              <div>
-                <p>Mumbai</p>
-                <span>14</span>
-              </div>
-              <div>🌤️</div>
-            </div>
-            <div>
-              <div>
-                <p>Mumbai</p>
-                <span>14</span>
-              </div>
-              <div>🌤️</div>
-            </div>
-          </div>
-        </div>
+      <div>
+        <h1>Weather<span>Dashboard</span></h1>
       </div>
+    </header>
 
-      <!-- Box3 -->
-      <div id="weather-box-three" class="center">
-        <div>
-          <div id="three-today-data">
-            <h4>Today</h4>
-            <div class="dayTemperature">
-              <div id="hourlyData">
+    <main>
+      <div id="weather-main-box">
+        <!-- Box 1 -->
+        <div id="weather-box-one" class="center">
+          <div>
+            <div id="today-box">
+              <div id="today-box-heading">
+                <div id="location-holder" class="center">
+                  <span class="center">
+                    <svg
+                      fill="#ffffff"
+                      width="800px"
+                      height="800px"
+                      viewBox="0 0 32 32"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z"
+                      ></path>
+                    </svg>
+                  </span>
+                  <h3 id="city">Mumbai</h3>
+                </div>
+                <div id="today">
+                  <h3>Monday</h3>
+                  <p>24 dec 2026</p>
+                </div>
+                <div id="temperature">
+                  <h3>26 C</h3>
+                  <p>
+                    High : <span id="high">26</span>low:
+                    <span id="low">10</span>
+                  </p>
+                </div>
               </div>
-            </div>
-            <div id="tomorrow-box">
-              <div>
-                <h4>Tomorrow</h4>
-                <p>Thunder storm</p>
-              </div>
-              <div class="tomorrow-temperature">
-                <p>14</p>
-              </div>
-              <div>
+              <div id="today-icon-box">
                 <span>
-                  <img id="tomorrow-img" src="" alt=""> 
+                  <img src="../assets/weather_icons/drizzle.png" alt="" />
                 </span>
+                <h3>Cloudy</h3>
+                <p>Feel like 26</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Box 2 -->
+        <div id="weather-box-two">
+          <div id="today-highlight">
+            <h4>Today Highlights</h4>
+            <div>
+              <div id="sunrise">
+                <p>SUNRISE</p>
+                <span></span>
+              </div>
+              <div id="sunset">
+                <p>SUNSET</p>
+                <span></span>
+              </div>
+              <div id="rain">
+                <p>RAIN</p>
+                <span></span>
+              </div>
+              <div id="uv-index">
+                <p>UV INDEX</p>
+                <span></span>
               </div>
             </div>
           </div>
 
-          <div id="future-data">
-            <ul class="center">
-            </ul>
-          </div>
-
-          <div id="overlay-data" class="hidden">
-            <h4 >2004-04-12</h4>
-            <div class="dayTemperature">
-              <div id="overlay-hourlyData">
-              </div>
-              <div id="go-today-button" onclick="offOverlayData()">
+          <div id="near-cities">
+            <h4>Near cities</h4>
+            <div>
               <div>
-                <h4>Today</h4>
-                <p>See Today Weather</p>
-              </div>
-              <div class="overlay-hourlyData-temperature">
-                <p>28</p>
+                <div>
+                  <p>Mumbai</p>
+                  <span>14</span>
+                </div>
+                <div>🌤️</div>
               </div>
               <div>
-                <span class="center"><img src="" alt=""></span>
+                <div>
+                  <p>Mumbai</p>
+                  <span>14</span>
+                </div>
+                <div>🌤️</div>
+              </div>
+              <div>
+                <div>
+                  <p>Mumbai</p>
+                  <span>14</span>
+                </div>
+                <div>🌤️</div>
+              </div>
+              <div>
+                <div>
+                  <p>Mumbai</p>
+                  <span>14</span>
+                </div>
+                <div>🌤️</div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- Box3 -->
+        <div id="weather-box-three" class="center">
+          <div>
+            <div id="three-today-data">
+              <h4>Today</h4>
+              <div class="dayTemperature">
+                <div id="hourlyData"></div>
+              </div>
+              <div id="tomorrow-box">
+                <div>
+                  <h4>Tomorrow</h4>
+                  <p>Thunder storm</p>
+                </div>
+                <div class="tomorrow-temperature">
+                  <p>14</p>
+                </div>
+                <div>
+                  <span>
+                    <img id="tomorrow-img" src="" alt="" />
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div id="future-data">
+              <ul class="center"></ul>
+            </div>
+
+            <div id="overlay-data" class="hidden">
+              <h4>2004-04-12</h4>
+              <div class="dayTemperature">
+                <div id="overlay-hourlyData"></div>
+                <div id="go-today-button" onclick="offOverlayData()">
+                  <div>
+                    <h4>Today</h4>
+                    <p>See Today Weather</p>
+                  </div>
+                  <div class="overlay-hourlyData-temperature">
+                    <p>28</p>
+                  </div>
+                  <div>
+                    <span class="center"><img src="" alt="" /></span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </main>
-  <div id="loader" class="center2"></div>
-</body>
+    </main>
 
+    
+    <!-- skeleton loader -->
+    <section id="skeleton-loader" class="hidden">
+      <div class="skeleton-card type-profile">
+        <div class="card-body">
+          <div class="skeleton animate shimmer sk-avatar"></div>
+          <div style="height: 8px"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+        </div>
+      </div>
+      <div class="skeleton-card type-profile">
+        <div class="card-body">
+          <div class="skeleton animate shimmer sk-avatar"></div>
+          <div style="height: 8px"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+        </div>
+      </div>
+      <div class="skeleton-card type-profile">
+        <div class="card-body">
+          <div class="skeleton animate shimmer sk-avatar"></div>
+          <div style="height: 8px"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+        </div>
+      </div>
+      <div class="skeleton-card type-profile">
+        <div class="card-body">
+          <div class="skeleton animate shimmer sk-avatar"></div>
+          <div style="height: 8px"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+          <div class="skeleton animate shimmer skeleton-line"></div>
+        </div>
+      </div>
+  
+    </section>
 
-<script src="../logic/weather.js"></script>
+  </body>
 
+  <script src="../logic/weather.js"></script>
 </html>

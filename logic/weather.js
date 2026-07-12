@@ -30,6 +30,12 @@ const getCurrentTime = () => {
     return time.getHours();
 };
 
+// show loader
+const showLoader = () => {
+    document.querySelector("main").classList.toggle("hidden");
+    document.querySelector("#skeleton-loader").classList.toggle("hidden");
+}
+
 // weather code analyzer
 const getWeatherCode = (code) => {
     switch (code) {
@@ -69,50 +75,46 @@ const getWeatherCode = (code) => {
 
 // function for current address
 const getCurrentLocation = () => {
-    return new Promise((resolve,reject)=>{
-        navigator.geolocation.getCurrentPosition(resolve,reject)
-    }) 
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject)
+    })
 }
 
 // function for reverse geolocation 
-const getCurrentCity = async() =>{
-  const result = await getCurrentLocation();
-  console.log(result.coords.latitude,result.coords.longitude)
+const getCurrentCity = async () => {
+    const result = await getCurrentLocation();
 
-   try {
-            const response = await fetch(
-                `https://nominatim.openstreetmap.org/reverse?lat=${result.coords.latitude}&lon=${result.coords.longitude}&format=jsonv2`,
-            );
+    try {
+        const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${result.coords.latitude}&lon=${result.coords.longitude}&format=jsonv2`,
+        );
 
-            if (!response.ok) {
-                throw new Error(`HTTP Error: ${response.status}`);
-            }
-
-            const data = await response.json();
-
-            return data.address.town.toLowerCase();
-        }catch(e){
-            console.error("Fetch error:", error.message);
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
         }
+
+        const data = await response.json();
+
+        return data.address.town.toLowerCase();
+    } catch (e) {
+        console.error("Fetch error:", error.message);
+    }
 }
 
 
 // Function for let Latitude and Longitude
 const getData = async (city = "mumbai") => {
+    showLoader();
     newCity = city.toLowerCase();
-    document.querySelector("main").classList.add("hidden");
-    document.querySelector("#loader").style.visibility = "visible";
 
     if (sessionStorage.getItem(city)) {
         storageData = JSON.parse(sessionStorage.getItem(city));
 
         cityWeatherData.length = 0;
-        specificDayData.length = 0;
 
         cityWeatherData.push(storageData[0]);
         cityWeatherData.push(storageData[1]);
-        specificDayData.push(storageData[0]);
-        specificDayData.push(storageData[2]);
+
         showData(cityWeatherData);
     } else {
         try {
@@ -127,17 +129,14 @@ const getData = async (city = "mumbai") => {
             const data = await response.json();
 
             if (!data.results) {
-                console.log("sdcd");
                 alert("Enter Valid city name");
                 getData();
             }
 
-            await getSpecificDayData(data.results[0]);
             getWeatherData(data.results[0]);
         } catch (error) {
+            showLoader();
             console.error("Fetch error:", error.message);
-            document.querySelector("#loader").style.display = "none";
-            document.querySelector("main").classList.remove("hidden");
         }
     }
 };
@@ -146,13 +145,14 @@ const getData = async (city = "mumbai") => {
 const getWeatherData = async (data) => {
     try {
         const response = await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${data.latitude}&longitude=${data.longitude}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&daily=uv_index_max,sunrise,sunset,rain_sum`,
+            `https://api.open-meteo.com/v1/forecast?latitude=${data.latitude}&longitude=${data.longitude}&current_weather=true&hourly=temperature_2m_max,weathercode&daily=temperature_2m_max,temperature_2m_min,weathercode,uv_index_max,sunrise,sunset,rain_sum&timezone=auto`,
         );
 
         if (!response.ok) {
             throw new Error(`HTTP Error: ${response.status}`);
         }
         const weatherData = await response.json();
+
 
         cityWeatherData.length = 0;
 
@@ -161,43 +161,20 @@ const getWeatherData = async (data) => {
 
         showData(cityWeatherData);
     } catch (error) {
+        showLoader();
         console.error("Fetch error:", error.message);
-        document.querySelector("#loader").style.display = "none";
-        document.querySelector("main").classList.remove("hidden");
-    }
-};
-
-// Function for getting weather data for specific day
-const getSpecificDayData = async (data) => {
-    try {
-        const response = await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${data.latitude}&longitude=${data.longitude}&current_weather=true&hourly=temperature_2m_max,weathercode&timezone=auto`,
-        );
-
-        if (!response.ok) {
-            throw new Error(`HTTP Error: ${response.status}`);
-        }
-        const weatherData = await response.json();
-
-        specificDayData.length = 0;
-
-        specificDayData.push(data);
-        specificDayData.push(weatherData);
-
-        console.log(specificDayData);
-    } catch (error) {
-        console.error("Fetch error:", error.message);
-        document.querySelector("#loader").style.display = "none";
-        document.querySelector("main").classList.remove("hidden");
+        
     }
 };
 
 // function for loaded values in ui
-const showData = async(cityWeatherData) => {
-    const hourly = await specificDayData[1].hourly;
+const showData = async (cityWeatherData) => {
+
+    const hourly = cityWeatherData[1].hourly;
     const daily = cityWeatherData[1].daily;
     const dateArray = cityWeatherData[1].daily.time.slice(1);
     const code = cityWeatherData[1].current_weather.weathercode;
+
     const weather = getWeatherCode(code)
         .split("/")[3]
         .split(".")[0]
@@ -216,7 +193,6 @@ const showData = async(cityWeatherData) => {
     boxOneIcon.src = getWeatherCode(code);
     boxOneWeather.innerText = weather.charAt(0).toUpperCase() + weather.slice(1);
 
-    console.log(cityWeatherData);
 
     //box 2 display
     hourlyData.innerHTML = "";
@@ -256,14 +232,10 @@ const showData = async(cityWeatherData) => {
     uvIndex.innerText = Math.round(daily.uv_index_max[0]);
 
 
-    document.querySelector("#loader").style.display = "none";
-    document.querySelector("main").classList.remove("hidden");
-
     if (!sessionStorage.getItem(cityWeatherData[0].name.toLowerCase())) {
         const storageData = [];
         storageData.push(cityWeatherData[0]);
         storageData.push(cityWeatherData[1]);
-        storageData.push(specificDayData[1]);
         if (storageData) {
             sessionStorage.setItem(
                 storageData[0].name.toLowerCase(),
@@ -271,12 +243,12 @@ const showData = async(cityWeatherData) => {
             );
         }
     }
-    loading = true;
+    
+    showLoader();
 };
 
-let loading = false;
+
 let cityWeatherData = [];
-let specificDayData = [];
 
 const city = document.getElementById("city");
 const today = document.getElementById("today");
@@ -295,12 +267,12 @@ const tomorrowBox = document.querySelectorAll("#tomorrow-box>div")
 const overlayBox = document.querySelectorAll("#go-today-button > div")
 
 
-const main = async() =>{
+const main = async () => {
     let result = confirm("Current Location")
-    if(result){
+    if (result) {
         let city = await getCurrentCity();
         getData(city);
-    }else{
+    } else {
         getData();
     }
 
@@ -325,24 +297,10 @@ searchBox.addEventListener("keydown", (event) => {
 // weather box 3 Data   //
 //---------------------//
 
-// ----------------------//
-// weather box 3 Data   //
-//---------------------//
-
-document.onreadystatechange = function () {
-    if (!loading) {
-        document.querySelector("main").classList.add("hidden");
-        document.querySelector("#loader").style.visibility = "visible";
-    } else {
-        document.querySelector("#loader").style.display = "none";
-        document.querySelector("main").classList.remove("hidden");
-    }
-};
-
 // function for overlay
 const overlayData = document.getElementById("overlay-data");
 const showOverlayData = async (event) => {
-    const hourly = await specificDayData[1].hourly;
+    const hourly = await cityWeatherData[1].hourly;
     overlayData.classList.remove("hidden");
     overlayData.children[0].innerHTML = event.innerText;
     overlayData.children[1].children[0].innerHTML = "";
@@ -352,7 +310,6 @@ const showOverlayData = async (event) => {
         index < parseInt(event.dataset.hour) + 24;
         index++
     ) {
-        console.log(index);
         overlayData.children[1].children[0].innerHTML += `<div class="hourly-box"> <p>${index - event.dataset.hour + ":00"}</p>
                     <img src="${getWeatherCode(hourly.weathercode[index])}"></img>
                     <p>${Math.ceil(hourly.temperature_2m_max[index]) + "°C"}</p>
