@@ -73,7 +73,7 @@ main {
 }
 
 #weather-main-box,
-#skeleton-loader{
+#skeleton-loader {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
@@ -302,6 +302,7 @@ main {
   border-radius: 1rem;
   margin-top: 1rem;
   padding: 1rem;
+   position: relative;
 }
 
 #today-highlight > div,
@@ -356,6 +357,18 @@ main {
   font-size: 30px;
 }
 
+#state-cities-holder > div {
+  justify-content: space-around !important;
+  text-align: center;
+}
+#state-cities-holder img {
+  width: 40px;
+  height: 40px;
+}
+#state-cities-holder p {
+ color: var(--txt-sc-color);
+}
+
 /* overlay data */
 #overlay-data {
   width: 60%;
@@ -369,9 +382,10 @@ main {
   border: 12px solid #f3f3f3;
   border-radius: 50%;
   border-top: 12px solid #444444;
-  width: 70px;
-  height: 70px;
+  width: 70px !important;
+  height: 70px !important;
   animation: spin 1s linear infinite;
+  top: 35%;
 }
 
 .center2 {
@@ -390,21 +404,21 @@ main {
 }
 
 .hidden {
-  display: none;
+  display: none !important ;
 }
 
 /* skeleton loader */
-#skeleton-loader{
+#skeleton-loader {
   margin: 2rem;
   gap: 32px;
   height: 75vh;
 }
 
-.skeleton-card{
+.skeleton-card {
   width: 100%;
 }
 
-.skeleton-card{
+.skeleton-card {
   background: #2d3854;
   border-radius: var(--skel-radius);
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
@@ -433,7 +447,6 @@ main {
   animation: shimmer var(--sk-speed) infinite;
 }
 
-
 @keyframes shimmer {
   0% {
     transform: translateX(-100%);
@@ -442,7 +455,6 @@ main {
     transform: translateX(100%);
   }
 }
-
 
 .skeleton-card.type-profile .card-body {
   padding: 20px;
@@ -456,13 +468,11 @@ main {
   border-radius: var(--skel-radius);
 }
 
-.skeleton-line{
+.skeleton-line {
   margin-top: 4px;
   height: 10px;
   width: 95%;
 }
-
-
 
 /* Tablet Responsive */
 @media screen and (max-width: 991px) {
@@ -472,7 +482,7 @@ main {
     flex-direction: column;
   }
 
-  #skeleton-loader{
+  #skeleton-loader {
     height: auto;
   }
 
@@ -496,6 +506,7 @@ main {
 
   #near-cities {
     height: auto;
+   
   }
 
   #today-highlight > div,
